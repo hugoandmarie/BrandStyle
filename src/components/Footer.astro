@@ -1,0 +1,44 @@
+---
+import {mainContent} from "../data/main-content";
+---
+<footer class="body-text text-cream flex flex-col gap-20 mt-32 px-[6dvw] pb-24">
+    <div class="flex justify-between">
+        <ul class="flex flex-col gap-8">
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Podcast</a>
+            </li>
+        </ul>
+        <ul class="flex flex-col gap-8">
+            <li>
+                <a href="#">Toolkit</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+            <li>
+                <a href="#">Sign Up For Updates</a>
+            </li>
+        </ul>
+    </div>
+    <ul class="flex justify-between">
+        <li>
+            <a href="#">IG</a>
+        </li>
+        <li>
+            <a href="#">FB</a>
+        </li>
+        <li>
+            <a href="#">LI</a>
+        </li>
+    </ul>
+    <div class="text-center text-xs px-0 opacity-50">
+        <p class="">{mainContent.addressText}</p>
+        <p class="mt-8">Copyright &copy; <span>{new Date().getFullYear()}</span> Brandstyle Communications, LLC. All Rights Reserved. <a href="">Privacy Policy</a></p>
+    </div>
+</footer>

@@ -1,0 +1,141 @@
+---
+import "../assets/styles.css";
+import { mainContent } from "../data/main-content";
+import DrawerContent from "./drawer-content.astro";
+---
+
+<div id="container" class="min-h-dvh">
+    <main class="flex flex-col gap-28 text-cream">
+        <!-- Hero section -->
+        <section class="relative min-h-dvh">
+            <!-- Logo -->
+            <img
+                    src="/images/bsc logomark_white.svg"
+                    alt="brandstyle_logo"
+                    class="fixed top-0 left-1/2 w-20 -translate-x-1/2 md:left-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
+            />
+            <button data-drawer="contact" class="nav-text hidden md:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</button>
+            <h1 class="title-text px-[8dvw] md:px-[20dvw] absolute inset-0 flex items-center justify-center text-xl md:text-3xl">
+                {mainContent.heroText}
+            </h1>
+            <div class="body-text absolute bottom-16 left-0 w-full text-center">
+                <p class="mb-10 px-[5dvw] text-sm">{mainContent.orgDesc}</p>
+                <a href={mainContent.learnMoreLink} class="link-text mt-8">Learn More</a>
+            </div>
+        </section>
+        <section class="relative px-[10dvw]">
+            <h2 class="body-text text-center">We Do This Through</h2>
+            <div class="flex flex-col gap-9 my-10">
+                <div class="relative">
+                    <img src={mainContent.servicesImage_1} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_1}</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_2}</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src={mainContent.servicesImage_3} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_3}</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src={mainContent.servicesImage_4} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_4}</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src={mainContent.servicesImage_5} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_5}</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src={mainContent.servicesImage_6} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p class="title-text text-xl">{mainContent.servicesText_6}</p>
+                    </div>
+                </div>
+            </div>
+            <a href={mainContent.learnMoreLink} class="link-text text-center mt-8">Learn More</a>
+        </section>
+        <section class="relative px-[6dvw]">
+            <h2 class="title-text flex items-center justify-center text-xl">
+                Brandstyle Communications works with dynamic companies and the Founders and Entrepreneurs behind them to drive explicit awareness in the most thoughtful, authentic and culturally relevant ways possible.
+            </h2>
+            <a href={mainContent.learnMoreLink} class="link-text text-center mt-8">Learn More</a>
+        </section>
+        <section class="relative px-[8dvw] flex flex-col gap-8">
+            <div id="podcast-card">
+                <div id="podcast-card-bg" class="w-full h-full"></div>
+                <div id="podcast-card-bg-2" class="w-full h-full"></div>
+                <div class="podcast-content w-full min-h-[50dvh] p-6 flex items-center justify-center gap-6 body-text text-xs text-center">
+                    <img src="/images/podcast-image.png" alt="podcast_thumbnail_image" class="w-full h-full rounded-4xl"/>
+                    <div>
+                        <h2>The Not Perfect Networking Podcast</h2>
+                        <p class="mt-2">Zoe Weisberg Coady</p>
+                    </div>
+                    <div class="w-full flex flex-col items-center">
+                        <div class="flex gap-5">
+                            <p>5.0 (8)</p>
+                            <p>Self-improvement</p>
+                        </div>
+                        <p class="mt-2">Updated Weekly</p>
+                    </div>
+                    <div class="flex justify-center gap-8 w-full">
+                        <img src="/images/Spotify.svg" alt="spotify_logo">
+                        <img src="/images/Apple.svg" alt="apple_podcast_logo">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-6 text-sm">
+                <p class="body-text text-center">{mainContent.podcastDesc_1}</p>
+                <p class="body-text text-center">{mainContent.podcastDesc_2}</p>
+            </div>
+            <div class="text-center">
+                <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
+                <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+            </div>
+        </section>
+        <section class="relative px-[6dvw] flex flex-col gap-8">
+            <h2 class="title-text flex items-center justify-center text-xl">
+                {mainContent.visibilityAdvDesc}
+            </h2>
+            <div class="relative">
+                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_1}</p>
+            </div>
+            <div class="relative">
+                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_2}</p>
+            </div>
+            <div class="relative">
+                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
+                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_3}</p>
+            </div>
+            <div class="flex justify-center gap-10">
+                <a href={mainContent.learnMoreLink} class="link-text w-fit!">Learn More</a>
+                <a href={mainContent.purchaseLink} class="link-text w-fit!">Purchase</a>
+            </div>
+        </section>
+        <!-- Contact section -->
+        <section class="relative px-[18dvw] flex flex-col gap-8">
+            <h2 class="title-text flex items-center justify-center text-xl">
+                {mainContent.contactText}
+            </h2>
+            <a href={mainContent.contactLink} class="link-text text-center">Contact Us</a>
+        </section>
+        <!-- Drawer Content -->
+        <DrawerContent />
+    </main>
+</div>
+
+<script>
+    import "../scripts/drawer.js";
+</script>

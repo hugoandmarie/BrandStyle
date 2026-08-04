@@ -1,0 +1,54 @@
+---
+import {drawerContent} from "../data/drawer-content";
+---
+<div
+        id="drawer"
+        class="
+                fixed bottom-0 left-0
+                w-dvw h-[92dvh]
+                translate-y-full overflow-y-auto
+                md:top-0 md:right-auto md:bottom-auto
+                md:h-dvh md:w-1/2
+                md:-translate-x-full md:translate-y-0
+                transition-transform duration-500
+            "
+>
+    <div data-content="about" class="hidden bg-cream text-teal">
+        <div class="flex justify-between w-full nav-text sticky top-0 p-4 bg-cream">
+            <p>About</p>
+            <button id="drawer-close" class="nav-text" type="button">Close</button>
+        </div>
+        <div class="flex flex-col items-center gap-24 drawer-body-text mt-20 pb-28 px-6">
+            <section>
+                <p>{drawerContent.aboutMainText}</p>
+                <a href="" class="link-text mt-8">Work With Us</a>
+            </section>
+            <section class="w-full">
+                <h3 class="drawer-title-text">Our Mission</h3>
+                <p class="mt-8">{drawerContent.aboutMissionText}</p>
+            </section>
+            <section class="w-full">
+                <h3 class="drawer-title-text">Services</h3>
+                <p class="mt-8">{drawerContent.aboutServicesText}</p>
+            </section>
+            <section class="w-full pt-6 border-t border-teal">
+                <h3 class="drawer-title-text">Brand Positioning</h3>
+                <p class="mt-8">{drawerContent.aboutBrandPosText}</p>
+                <a href="" class="link-text mt-8">Work With Us</a>
+            </section>
+            <section class="w-full">
+                <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
+                <img src="/images/founder-image.png" alt="founder_portrait_b&w" class="w-full object-cover mt-8"/>
+                <p class="mt-8">{drawerContent.aboutFounderText}</p>
+                <a href="" class="link-text mt-8">Learn More</a>
+            </section>
+        </div>
+    </div>
+
+    <div data-content="services" class="hidden w-dvw h-[90dvh] bg-cream p-4">
+        <div class="flex justify-between w-full nav-text text-teal">
+            <p>Services</p>
+            <button id="drawer-close" class="nav-text">Close</button>
+        </div>
+    </div>
+</div>
