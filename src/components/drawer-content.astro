@@ -18,7 +18,7 @@ import {drawerContent} from "../data/drawer-content";
             <p>About</p>
             <button id="drawer-close" class="nav-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-20 px-6">
+        <div class="flex flex-col items-center gap-24 drawer-body-text mt-20 pb-28 px-6">
             <section>
                 <p>{drawerContent.aboutMainText}</p>
                 <a href="" class="link-text mt-8">Work With Us</a>
@@ -31,9 +31,16 @@ import {drawerContent} from "../data/drawer-content";
                 <h3 class="drawer-title-text">Services</h3>
                 <p class="mt-8">{drawerContent.aboutServicesText}</p>
             </section>
-            <section class="w-full">
+            <section class="w-full pt-6 border-t border-teal">
                 <h3 class="drawer-title-text">Brand Positioning</h3>
                 <p class="mt-8">{drawerContent.aboutBrandPosText}</p>
+                <a href="" class="link-text mt-8">Work With Us</a>
+            </section>
+            <section class="w-full">
+                <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
+                <img src="/images/founder-image.png" alt="founder_portrait_b&w" class="w-full object-cover mt-8"/>
+                <p class="mt-8">{drawerContent.aboutFounderText}</p>
+                <a href="" class="link-text mt-8">Learn More</a>
             </section>
         </div>
     </div>
