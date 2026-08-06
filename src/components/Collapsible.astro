@@ -1,0 +1,24 @@
+---
+const { items = [] } = Astro.props;
+---
+
+<div class="w-full">
+    {items.map((item: { title: String; description: String; }) => (
+            <details class="group w-full border-b py-6">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                    <h3 class="drawer-title-text">
+                        {item.title}
+                    </h3>
+
+                    <span class="ml-4">
+                        <span class="group-open:hidden">+</span>
+                        <span class="hidden group-open:inline">−</span>
+                    </span>
+                </summary>
+
+                <p class="mt-7">
+                    {item.description}
+                </p>
+            </details>
+    ))}
+</div>

@@ -1,7 +1,7 @@
 const drawer = document.querySelector("#drawer");
 const links = document.querySelectorAll("[data-drawer]");
 const contents = document.querySelectorAll("[data-content]");
-const close = document.querySelector("#drawer-close");
+const closes = document.querySelectorAll("[data-drawer-close]");
 
 links.forEach((link) => {
     link.addEventListener("click", () => {
@@ -25,9 +25,18 @@ links.forEach((link) => {
     });
 });
 
-close.addEventListener("click", () => {
-    // Close drawer
-    drawer.classList.remove("translate-y-0", "md:translate-x-0");
-    drawer.classList.add("translate-y-full", "md:-translate-x-full");
-    document.body.classList.remove("overflow-hidden");
+closes.forEach((close) => {
+    close.addEventListener("click", () => {
+        drawer.classList.remove(
+            "translate-y-0",
+            "md:translate-x-0"
+        );
+
+        drawer.classList.add(
+            "translate-y-full",
+            "md:-translate-x-full"
+        );
+
+        document.body.classList.remove("overflow-hidden");
+    });
 });
