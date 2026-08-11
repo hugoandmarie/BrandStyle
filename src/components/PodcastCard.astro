@@ -19,18 +19,19 @@ const hasEpisodeData = date || length || description;
         />
         {hasEpisodeData ? (
                 <>
-                    <div class="flex justify-center">
+                    <div class="flex justify-center gap-5">
                         <p>{date}</p>
                         <p class="">{length}</p>
                     </div>
 
                     <div class="w-full flex flex-col items-center">
                         <p>{description}</p>
+                        <p class="mt-2 font-normal">The Not Perfect Networking Podcast</p>
                     </div>
                 </>
         ) : (
                 <>
-                    <div>
+                    <div class="font-normal">
                         <h2>The Not Perfect Networking Podcast</h2>
                         <p class="mt-2">Zoe Weisberg Coady</p>
                     </div>

@@ -93,6 +93,11 @@ body {
     text-transform: uppercase;
 }
 
+#drawer > div {
+    /*height: 100%;*/
+    min-height: 100dvh;
+}
+
 .drawer-title-text {
     font-size: 16px;
     letter-spacing: 0.32px;
