@@ -2,7 +2,8 @@
 const {
     date = null,
     length = null,
-    description = null
+    description = null,
+    altLayout = false,
 } = Astro.props;
 
 const hasEpisodeData = date || length || description;
@@ -11,43 +12,48 @@ const hasEpisodeData = date || length || description;
 <div id="podcast-card">
     <div id="podcast-card-bg" class="w-full h-full"></div>
     <div id="podcast-card-bg-2" class="w-full h-full"></div>
-    <div class="podcast-content text-cream w-full min-h-[50dvh] p-6 flex items-center justify-center gap-6 body-text text-xs text-center">
+    <div class={`podcast-content w-full p-6
+        flex
+        text-cream body-text text-xs md:text-sm!
+        ${altLayout ? "flex-row items-center text-start gap-10" : "flex-col justify-center text-center gap-6"}`}>
         <img
                 src="/images/podcast-image.png"
                 alt="podcast_thumbnail_image"
-                class="w-full h-full rounded-4xl"
+                class={`w-full h-full rounded-4xl ${altLayout ? "md:w-[30dvw]" : ""}`}
         />
-        {hasEpisodeData ? (
+        <div class={`flex flex-col gap-6 h-full`}>
+            {hasEpisodeData ? (
                 <>
-                    <div class="flex justify-center gap-5">
+                    <div class={`flex gap-5 ${altLayout ? "justify-start" : "justify-center"}`}>
                         <p>{date}</p>
                         <p class="">{length}</p>
                     </div>
 
-                    <div class="w-full flex flex-col items-center">
+                    <div class={`w-full flex ${altLayout ? "flex-col gap-6" : "flex-row items-center"}`}>
                         <p>{description}</p>
-                        <p class="mt-2 font-normal">The Not Perfect Networking Podcast</p>
+                        <p class={`${altLayout ? "mt-0" : "mt-2"} font-normal`}>The Not Perfect Networking Podcast</p>
                     </div>
                 </>
-        ) : (
+            ) : (
                 <>
                     <div class="font-normal">
                         <h2>The Not Perfect Networking Podcast</h2>
                         <p class="mt-2">Zoe Weisberg Coady</p>
                     </div>
 
-                    <div class="w-full flex flex-col items-center">
+                    <div class={`w-full flex items-center ${altLayout ? "flex-row" : "flex-col"}`}>
                         <div class="flex gap-5">
                             <p>5.0 (8)</p>
                             <p>Self-improvement</p>
                         </div>
-                        <p class="mt-2">Updated Weekly</p>
+                        <p class={`${altLayout ? "mt-0" : "mt-2"}`}>Updated Weekly</p>
                     </div>
                 </>
-        )}
-        <div class="flex justify-center gap-8 w-full">
-            <img src="/images/Spotify.svg" alt="spotify_logo">
-            <img src="/images/Apple.svg" alt="apple_podcast_logo">
+            )}
+            <div class="flex justify-center gap-8 w-full">
+                <img src="/images/Spotify.svg" alt="spotify_logo">
+                <img src="/images/Apple.svg" alt="apple_podcast_logo">
+            </div>
         </div>
     </div>
 </div>

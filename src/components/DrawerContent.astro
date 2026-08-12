@@ -4,16 +4,22 @@ import Collapsible from "./Collapsible.astro";
 import PodcastCard from "./PodcastCard.astro";
 import {mainContent} from "../data/main-content";
 ---
+<!-- Darken overlay  -->
+<div
+        id="drawer-overlay"
+        class="fixed inset-0 z-40 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-500"
+></div>
+
 <div
         id="drawer"
         class="
                 fixed bottom-0 left-0
-                z-10
+                z-20 xl:z-40
                 w-dvw h-[92dvh]
                 translate-y-full overflow-y-auto
-                md:top-0 md:right-auto md:bottom-auto
-                md:h-dvh md:w-1/2
-                md:-translate-x-full md:translate-y-0
+                xl:top-0 xl:right-auto xl:bottom-auto
+                xl:h-dvh xl:w-3xl
+                xl:-translate-x-full xl:translate-y-0
                 transition-transform duration-500
             "
 >
@@ -62,7 +68,7 @@ import {mainContent} from "../data/main-content";
                 <a href="" class="link-text mt-7">Work With Us</a>
             </section>
             <section class="w-full">
-                <PodcastCard />
+                <PodcastCard altLayout={true} />
                 {drawerContent.aboutPodcastText.map((paragraph) => (
                         <p class="mt-7">{paragraph}</p>
                 ))}
@@ -108,7 +114,7 @@ import {mainContent} from "../data/main-content";
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Select Clients</h3>
-                <div class="grid grid-cols-2 justify-items-center gap-y-10 mt-7">
+                <div class="grid grid-cols-2 justify-items-center gap-y-10 mt-7 md:mt-12">
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="21" viewBox="0 0 142 21" fill="none">
                         <g clip-path="url(#clip0_757_3843)">
                             <path d="M7.10364 20.3214V20.6466H0.0203478V20.3479C0.426057 20.2401 0.83343 20.1803 1.2009 20.026C1.9907 19.6908 2.49784 19.0635 2.68573 18.2437C2.83371 17.5932 2.92682 16.9161 2.93181 16.249C2.96008 12.384 2.95842 8.5191 2.95675 4.65415C2.95675 3.78126 2.90687 2.90837 2.5128 2.1002C2.0622 1.1825 1.34223 0.639851 0.304677 0.57679C0.038638 0.560195 -0.0611267 0.477221 0.0369752 0.18847C0.120112 0.185151 0.216552 0.176853 0.311328 0.176853C1.51349 0.176853 2.71399 0.181832 3.91616 0.171875C4.11735 0.171875 4.24372 0.239914 4.36676 0.390927C8.5469 5.5287 12.7287 10.6648 16.9122 15.8009C16.9803 15.8839 17.0518 15.9636 17.1583 16.0847C17.1682 15.9569 17.1815 15.8756 17.1815 15.7926C17.1882 12.077 17.1965 8.35979 17.1948 4.64419C17.1948 3.83105 17.1499 3.0179 16.8041 2.25785C16.3319 1.21901 15.5321 0.64317 14.3815 0.570152C14.3033 0.565174 14.2252 0.555217 14.1237 0.54526V0.190129H20.7847V0.505432C20.4222 0.581769 20.0481 0.611639 19.7139 0.742739C18.8509 1.08127 18.2989 1.74507 18.0977 2.62958C17.9431 3.30997 17.8566 4.01857 17.8549 4.71555C17.835 9.88818 17.845 15.0625 17.845 20.2351V20.6284C17.5423 20.6914 17.3245 20.6765 17.1067 20.411C12.7985 15.172 8.47873 9.9446 4.16058 4.71389C3.99763 4.51641 3.83302 4.32059 3.63183 4.07831C3.61853 4.20277 3.60522 4.27413 3.60356 4.34549C3.59857 8.31996 3.59192 12.2928 3.59525 16.2672C3.59525 17.0621 3.68337 17.8504 4.05084 18.5773C4.58458 19.631 5.49576 20.1073 6.6231 20.2517C6.75114 20.2683 6.88083 20.2749 7.00886 20.2898C7.03713 20.2932 7.06373 20.3081 7.10031 20.3214H7.10364Z" fill="#1F3837"/>
@@ -209,9 +215,10 @@ import {mainContent} from "../data/main-content";
                                 date={podcast.date}
                                 length={podcast.length}
                                 description={podcast.description}
+                                altLayout={true}
                         />
                 ))}
-                <a href="" class="link-text mt-7">View All</a>
+                <a href="" class="link-text mt-7 text-start md:text-center">View All</a>
             </section>
             <section>
                 <h3 class="drawer-title-text">BrandStyle Communications</h3>
@@ -232,7 +239,7 @@ import {mainContent} from "../data/main-content";
                 <p class="mt-7">{drawerContent.toolkitMainText}</p>
                 <a href="" class="link-text mt-7">Purchase</a>
             </section>
-            <section class="flex flex-col gap-8">
+            <section class="flex flex-col gap-8 md:gap-24">
                 <div class="relative">
                     <img src={drawerContent.toolkitImage_1} alt="abstract-b&w_image" class="w-full object-cover gradient-image"/>
                     <p class="text-sm mt-4">{drawerContent.toolkitSubtext_1}</p>
@@ -258,17 +265,25 @@ import {mainContent} from "../data/main-content";
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6">
-            <section>
-                <p>{drawerContent.contactMainText}</p>
+            <section class="w-full">
+                <p class="text-start">{drawerContent.contactMainText}</p>
+            </section>
+            <section class="w-full">
+                <div>
+                    <h3 class="drawer-title-text mb-5">Address</h3>
+                    {drawerContent.contactAddress.map((paragraph) => (
+                            <p>{paragraph}</p>
+                    ))}
+                </div>
             </section>
             <section class="flex flex-col gap-10 w-full">
                 <div>
                     <h3 class="drawer-title-text">Inquiries</h3>
-                    <p class="mt-5">{drawerContent.contactEmail_1}</p>
+                    <a href={`mailto: ${drawerContent.contactEmail_1}`} class="mt-5">{drawerContent.contactEmail_1}</a>
                 </div>
                 <div>
                     <h3 class="drawer-title-text">Careers</h3>
-                    <p class="mt-5">{drawerContent.contactEmail_2}</p>
+                    <a href={`mailto: ${drawerContent.contactEmail_2}`} class="mt-5">{drawerContent.contactEmail_2}</a>
                 </div>
             </section>
         </div>

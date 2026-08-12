@@ -1,112 +1,87 @@
 ---
-import "../assets/styles.css";
 import { mainContent } from "../data/main-content";
 import DrawerContent from "./DrawerContent.astro";
 import PodcastCard from "./PodcastCard.astro";
 ---
 
 <div id="container" class="min-h-dvh">
-    <main class="flex flex-col gap-28 text-cream">
+    <main class="flex flex-col gap-28 md:gap-52 text-cream">
         <!-- Hero section -->
-        <section class="relative min-h-dvh">
+        <section class="relative min-h-dvh z-20">
             <!-- Logo -->
             <img
                     src="/images/bsc logomark_white.svg"
                     alt="brandstyle_logo"
-                    class="fixed top-0 left-1/2 w-20 -translate-x-1/2 md:left-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 z-20"
+                    class="fixed top-0 left-1/2 w-20 -translate-x-1/2 xl:left-0 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 z-20"
             />
-            <button data-drawer="contact" class="nav-text hidden md:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</button>
-            <h1 class="title-text px-[8dvw] md:px-[20dvw] absolute inset-0 flex items-center justify-center text-xl md:text-3xl">
+            <button data-drawer="contact" class="nav-text hidden xl:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</button>
+            <h1 class="title-text pb-32 xl:pb-0 px-[8dvw] md:px-[20dvw] absolute inset-0 flex items-center justify-center text-xl md:text-3xl">
                 {mainContent.heroText}
             </h1>
-            <div class="body-text absolute bottom-16 left-0 w-full text-center">
-                <p class="mb-10 px-[5dvw] text-sm">{mainContent.orgDesc}</p>
-                <a href={mainContent.learnMoreLink} class="link-text mt-7">Learn More</a>
+            <div class="body-text absolute bottom-24 md:bottom-28 xl:bottom-16 left-0 w-full text-center flex flex-col justify-center items-center">
+                <p class="w-[90dvw] md:w-[50dvw] lg:w-[45dvw] xl:w-[35dvw] text-sm">{mainContent.orgDesc}</p>
+                <a href={mainContent.learnMoreLink} class="link-text mt-7 md:mt-10 xl:mt-14">Learn More</a>
             </div>
         </section>
-        <section class="relative px-[10dvw]">
+        <section class="relative px-[10dvw] md:px-[8dvw] flex flex-col gap-8 md:gap-12 xl:gap-18 ">
             <h2 class="body-text text-center">We Do This Through</h2>
-            <div class="flex flex-col gap-9 my-10">
-                <div class="relative">
-                    <img src={mainContent.servicesImage_1} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_1}</p>
+            <div class="flex flex-col justify-center items-center md:flex-row md:flex-wrap xl:flex-col gap-9 md:gap-7 xl:gap-12">
+                {mainContent.servicesImages.map((service) => (
+                    <div class="block xl:hidden relative w-full md:w-fit">
+                        <img src={service.src} alt="abstract-b&w_image" class="w-full md:w-[40dvw] object-cover h-48 md:h-42 lg:h-56"/>
+                        <div class="absolute inset-0 px-4 md:px-12 flex items-center justify-center">
+                            <p class="title-text md:text-xl! md:tracking-normal!">{service.text}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="relative">
-                    <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_2}</p>
+                    <!--  TODO: show image on hover, follows cursor on horizontal axis  -->
+                    <div class="hidden xl:block cursor-pointer">
+                        <p class="title-text">{service.text}</p>
                     </div>
-                </div>
-                <div class="relative">
-                    <img src={mainContent.servicesImage_3} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_3}</p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img src={mainContent.servicesImage_4} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_4}</p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img src={mainContent.servicesImage_5} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_5}</p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img src={mainContent.servicesImage_6} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <p class="title-text text-xl">{mainContent.servicesText_6}</p>
-                    </div>
-                </div>
+                ))}
             </div>
-            <a href={mainContent.learnMoreLink} class="link-text text-center mt-7">Learn More</a>
+            <a href={mainContent.learnMoreLink} class="link-text text-center">Learn More</a>
         </section>
-        <section class="relative px-[6dvw]">
-            <h2 class="title-text flex items-center justify-center text-xl">
+        <section class="relative flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18 w-full">
+            <h2 class="title-text w-[90dvw] md:w-[80dvw]">
                 Brandstyle Communications works with dynamic companies and the Founders and Entrepreneurs behind them to drive explicit awareness in the most thoughtful, authentic and culturally relevant ways possible.
             </h2>
-            <a href={mainContent.learnMoreLink} class="link-text text-center mt-7">Learn More</a>
+            <a href={mainContent.learnMoreLink} class="link-text text-center">Learn More</a>
         </section>
-        <section class="relative px-[8dvw] flex flex-col gap-8">
+        <!-- PODCAST INFO -->
+        <section class="relative px-[8dvw] md:px-[20dvw] flex flex-col xl:flex-row xl:items-center gap-8 md:gap-12 xl:gap-18">
             <PodcastCard />
-            <div class="flex flex-col gap-6 text-sm">
-                <p class="body-text text-center">{mainContent.podcastDesc_1}</p>
-                <p class="body-text text-center">{mainContent.podcastDesc_2}</p>
-            </div>
-            <div class="text-center">
-                <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
-                <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+            <div class="w-full xl:w-[50dvw] block xl:flex xl:flex-col xl:gap-12">
+                <div class="flex flex-col gap-6 text-sm">
+                    <p class="body-text text-center md:text-start">{mainContent.podcastDesc_1}</p>
+                    <p class="body-text text-center md:text-start">{mainContent.podcastDesc_2}</p>
+                </div>
+                <div class="text-center md:text-start">
+                    <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
+                    <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+                </div>
             </div>
         </section>
-        <section class="relative px-[6dvw] flex flex-col gap-8">
-            <h2 class="title-text flex items-center justify-center text-xl">
+        <!-- VISIBILITY ADVANTAGE -->
+        <section class="relative px-[6dvw] md:px-0 flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18">
+            <h2 class="title-text flex items-center justify-center text-xl md:w-[75dvw]">
                 {mainContent.visibilityAdvDesc}
             </h2>
-            <div class="relative">
-                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_1}</p>
+            <div class="flex flex-col xl:flex-row gap-8 w-full md:w-fit">
+                {mainContent.visibilityAdvImages.map((adv) => (
+                    <div class="relative w-full md:w-[55dvw] xl:w-[25dvw]">
+                        <img src={adv.src} alt="abstract-b&w_image" class="w-full object-cover h-52"/>
+                        <p class="body-text text-sm mt-4">{adv.text}</p>
+                    </div>
+                ))}
             </div>
-            <div class="relative">
-                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_2}</p>
-            </div>
-            <div class="relative">
-                <img src={mainContent.servicesImage_2} alt="abstract-b&w_image" class="w-full object-cover h-48"/>
-                <p class="body-text text-sm mt-4">{mainContent.visibilityAdvText_3}</p>
-            </div>
-            <div class="flex justify-center gap-10">
+            <div class="flex justify-center gap-10 xl:gap-12">
                 <a href={mainContent.learnMoreLink} class="link-text w-fit!">Learn More</a>
                 <a href={mainContent.purchaseLink} class="link-text w-fit!">Purchase</a>
             </div>
         </section>
         <!-- Contact section -->
-        <section class="relative px-[18dvw] flex flex-col gap-8">
-            <h2 class="title-text flex items-center justify-center text-xl">
+        <section class="relative flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18">
+            <h2 class="title-text flex items-center justify-center text-xl w-[80dvw] md:w-[75dvw] xl:w-[55dvw]">
                 {mainContent.contactText}
             </h2>
             <a href={mainContent.contactLink} class="link-text text-center">Contact Us</a>
@@ -115,7 +90,3 @@ import PodcastCard from "./PodcastCard.astro";
         <DrawerContent />
     </main>
 </div>
-
-<script>
-    import "../scripts/drawer.js";
-</script>

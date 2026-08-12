@@ -1,7 +1,7 @@
 ---
 const { items = [] } = Astro.props;
 ---
-
+<!-- TODO: only one collapsible can be open at a time -->
 <div class="w-full">
     {items.map((item: { title: String; description: String; }) => (
             <details class="group w-full border-b py-6">

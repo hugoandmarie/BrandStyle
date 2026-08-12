@@ -29,8 +29,8 @@
     src: url('/fonts/GT-America-Mono-Medium.woff2');
 }
 
-body {
-
+button {
+    cursor: pointer;
 }
 
 .responsive-single-line {
@@ -145,8 +145,6 @@ body {
 }
 
 .podcast-content {
-    display: flex;
-    flex-direction: column;
     background: rgba(47, 30, 52, 0.80);
     backdrop-filter: blur(30px);
     border-radius: 37px;

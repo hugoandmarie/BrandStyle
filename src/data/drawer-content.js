@@ -46,10 +46,6 @@ export const drawerContent = {
     servicesSubText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.",
     servicesSectorCollapsibleContent: [
         {
-            title: "Sectors",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.",
-        },
-        {
             title: "Tech",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.",
         },
@@ -100,6 +96,10 @@ export const drawerContent = {
     toolkitImage_1: "/images/visibility_adv.png",
     // CONTACT
     contactMainText: "Contact us now to determine how we can best elevate your communications.",
+    contactAddress: [
+        "228 Park Avenue South",
+        "New York, NY 10003"
+    ],
     contactEmail_1: "info@brandstyle.com",
     contactEmail_2: "careers@brandstyle.com",
 }
