@@ -48,22 +48,6 @@ links.forEach((link) => {
         close.focus();
     });
 });
-//
-// closes.forEach((close) => {
-//     close.addEventListener("click", () => {
-//         drawer.classList.remove(
-//             "translate-y-0",
-//             "xl:translate-x-0"
-//         );
-//         drawer.classList.add(
-//             "translate-y-full",
-//             "xl:-translate-x-full"
-//         );
-//         document.body.classList.remove("overflow-hidden");
-//         overlay.classList.remove("opacity-100");
-//         overlay.classList.add("opacity-0", "pointer-events-none");
-//     });
-// });
 
 overlay.addEventListener("click", closeDrawer);
 

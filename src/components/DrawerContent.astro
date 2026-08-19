@@ -3,6 +3,7 @@ import { sanityClient } from "../lib/sanity";
 import Collapsible from "./Collapsible.astro";
 import PodcastCard from "./PodcastCard.astro";
 import {urlFor} from "../lib/sanityImage.ts";
+import NewsletterSignup from "./NewsletterSignup.astro";
 
 const drawerContent = await sanityClient.fetch(`
   *[_type == "drawerContent"][0] {

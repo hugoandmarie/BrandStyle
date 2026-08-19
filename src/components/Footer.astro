@@ -34,10 +34,6 @@ const navItems_2 = [
         label: "Contact",
         link: "contact",
     },
-    {
-        label: "Sign Up For Updates",
-        link: "signup",
-    },
 ]
 
 const socialLinks = [
@@ -65,6 +61,9 @@ const socialLinks = [
             {navItems_2.map((item, index) => (
                 <button data-drawer={item.link} class="body-text">{item.label}</button>
             ))}
+            <button data-newsletter-open class="body-text">
+                Sign Up For Updates
+            </button>
             {socialLinks.map((item) => (
                 <a href={item.link} target="_blank" class="body-text">
                     {item.label}
@@ -77,14 +76,15 @@ const socialLinks = [
                 <button data-drawer={item.link} class="body-text">{item.label}</button>
             ))}
             {navItems_2.map((item, index) => (
-                index !== 2 && (
-                    <button data-drawer={item.link} class="body-text">{item.label}</button>
-                )
+                <button data-drawer={item.link} class="body-text">{item.label}</button>
             ))}
+            <button data-newsletter-open class="body-text">
+                Sign Up For Updates
+            </button>
         </div>
         <div class="hidden xl:hidden md:flex justify-center gap-12">
-            <button data-drawer={navItems_2[2].link} class="body-text">
-                {navItems_2[2].label}
+            <button data-newsletter-open class="body-text">
+                Sign Up For Updates
             </button>
             {socialLinks.map((item) => (
                 <a href={item.link} target="_blank" class="body-text">
@@ -102,6 +102,9 @@ const socialLinks = [
             {navItems_2.map((item) => (
                 <button data-drawer={item.link} class="body-text">{item.label}</button>
             ))}
+            <button data-newsletter-open class="body-text">
+                Sign Up For Updates
+            </button>
         </div>
     </nav>
     <!-- Mobile only -->

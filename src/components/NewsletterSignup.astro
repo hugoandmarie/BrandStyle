@@ -1,0 +1,105 @@
+---
+---
+
+<!-- TODO: newsletter drawer layout and functionality -->
+<div
+        id="newsletter-overlay"
+        class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-500"
+></div>
+
+<div
+        id="newsletter-drawer"
+        class="
+        fixed bottom-0 left-0 z-50
+        w-full
+        translate-y-full
+        bg-cream text-teal
+        transition-transform duration-500
+    "
+>
+    <div class="flex justify-between w-full p-4">
+        <p class="nav-text">Sign Up For Updates</p>
+
+        <button
+                type="button"
+                data-newsletter-close
+                class="nav-text"
+        >
+            Close
+        </button>
+    </div>
+
+    <div class="p-6 pb-20">
+        <h2 class="drawer-title-text">
+            Stay Updated
+        </h2>
+
+        <p class="mt-7">
+            Sign up to receive news and updates.
+        </p>
+
+        <form class="mt-10">
+            <input
+                    type="email"
+                    placeholder="Email Address"
+                    class="w-full border-b border-teal bg-transparent py-3 outline-none"
+            />
+
+            <button
+                    type="submit"
+                    class="link-text mt-8"
+            >
+                Sign Up
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const drawer = document.querySelector("#newsletter-drawer");
+    const overlay = document.querySelector("#newsletter-overlay");
+
+    function openNewsletter() {
+        drawer?.classList.remove("translate-y-full");
+        drawer?.classList.add("translate-y-0");
+
+        overlay?.classList.remove(
+            "opacity-0",
+            "pointer-events-none"
+        );
+
+        overlay?.classList.add("opacity-100");
+
+        document.body.classList.add("overflow-hidden");
+    }
+
+    function closeNewsletter() {
+        drawer?.classList.remove("translate-y-0");
+        drawer?.classList.add("translate-y-full");
+
+        overlay?.classList.remove("opacity-100");
+
+        overlay?.classList.add(
+            "opacity-0",
+            "pointer-events-none"
+        );
+
+        document.body.classList.remove("overflow-hidden");
+    }
+
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (!(target instanceof Element)) return;
+
+        if (target.closest("[data-newsletter-open]")) {
+            openNewsletter();
+        }
+
+        if (target.closest("[data-newsletter-close]")) {
+            closeNewsletter();
+        }
+    });
+
+    overlay?.addEventListener("click", closeNewsletter);
+</script>

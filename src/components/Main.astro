@@ -4,6 +4,7 @@ import { urlFor } from "../lib/sanityImage";
 import DrawerContent from "./DrawerContent.astro";
 import PodcastCard from "./PodcastCard.astro";
 import HoverTextSection from "./HoverTextSection.astro"
+import NewsletterSignup from "./NewsletterSignup.astro";
 
 const mainContent = await sanityClient.fetch(`
 *[_type == "mainContent"][0] {
@@ -121,5 +122,6 @@ const mainContent = await sanityClient.fetch(`
         </section>
         <!-- Drawer Content -->
         <DrawerContent />
+        <NewsletterSignup />
     </main>
 </div>
