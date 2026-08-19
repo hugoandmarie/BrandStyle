@@ -92,13 +92,13 @@ const mainContent = await sanityClient.fetch(`
             <h2 class="title-text flex items-center justify-center text-xl md:w-[75dvw]">
                 {mainContent.visibilityAdvDesc}
             </h2>
-            <div class="flex flex-col xl:flex-row gap-8 w-full md:w-fit">
+            <div class="flex flex-col xl:flex-row gap-8 2xl:gap-12 w-full md:w-fit">
                 {mainContent.visibilityAdvImages?.map((adv) => (
                         <div class="relative w-full md:w-[55dvw] xl:w-[25dvw]">
                             <img
                                     src={urlFor(adv.image).width(1200).url()}
                                     alt={adv.text}
-                                    class="w-full object-cover h-52"
+                                    class="w-full object-cover h-[25dvh]"
                             />
 
                             <p class="body-text text-sm mt-4">

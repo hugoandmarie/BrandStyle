@@ -261,6 +261,33 @@ export const mainContent = defineType({
 
         // FOOTER
         defineField({
+            name: "instagramLink",
+            title: "Instagram Link",
+            type: "url",
+            group: "footer",
+            description:
+                "URL to Instagram",
+        }),
+
+        defineField({
+            name: "facebookLink",
+            title: "Facebook Link",
+            type: "url",
+            group: "footer",
+            description:
+                "URL to Facebook",
+        }),
+
+        defineField({
+            name: "linkedinLink",
+            title: "LinkedIn Link",
+            type: "url",
+            group: "footer",
+            description:
+                "URL to LinkedIn",
+        }),
+
+        defineField({
             name: "addressText",
             title: "Office Address",
             type: "string",

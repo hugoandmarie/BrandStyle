@@ -194,12 +194,63 @@ export const drawerContent = defineType({
 
         defineField({
             name: "servicesSubText",
-            title: "Secondary Text",
+            title: "Services Subtext",
             type: "text",
             rows: 5,
             group: "services",
             description:
                 "Supporting text displayed within the Services drawer.",
+        }),
+
+        defineField({
+            name: "servicesCollapsibleContent",
+            title: "Services Collapsible Content",
+            type: "array",
+            group: "services",
+            description:
+                "Expandable service sections. Drag items to change their display order.",
+
+            of: [
+                defineArrayMember({
+                    name: "servicesItem",
+                    title: "Services",
+                    type: "object",
+
+                    fields: [
+                        defineField({
+                            name: "title",
+                            title: "Service Name",
+                            type: "string",
+                            validation: (Rule) => Rule.required(),
+                        }),
+
+                        defineField({
+                            name: "description",
+                            title: "Description",
+                            type: "text",
+                            rows: 5,
+                            validation: (Rule) => Rule.required(),
+                        }),
+                    ],
+
+                    preview: {
+                        select: {
+                            title: "title",
+                            subtitle: "description",
+                        },
+                    },
+                }),
+            ],
+        }),
+
+        defineField({
+            name: "sectorsSubText",
+            title: "Sectors Subtext",
+            type: "text",
+            rows: 5,
+            group: "services",
+            description:
+                "Supporting text displayed within the Sectors drawer.",
         }),
 
         defineField({
@@ -243,6 +294,46 @@ export const drawerContent = defineType({
             ],
         }),
 
+        defineField({
+            name: "clientLogos",
+            title: "Clients Logos",
+            type: "array",
+            group: "services",
+            description: "Upload client logos to feature.",
+
+            of: [
+                defineArrayMember({
+                    name: "clientLogo",
+                    title: "Client Logo",
+                    type: "object",
+
+                    fields: [
+                        defineField({
+                            name: "image",
+                            title: "Logo",
+                            type: "image",
+
+                            validation: (Rule) => Rule.required(),
+                        }),
+
+                        defineField({
+                            name: "text",
+                            title: "Client Title",
+                            type: "string",
+                            description:
+                                'Enter client name.',
+                        }),
+                    ],
+
+                    preview: {
+                        select: {
+                            title: "text",
+                            media: "image",
+                        },
+                    },
+                }),
+            ],
+        }),
 
         // =====================================================
         // PODCAST

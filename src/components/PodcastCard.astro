@@ -17,16 +17,16 @@ const {
 const hasEpisodeData = date || length || description;
 ---
 
-<div id="podcast-card" class="w-full xl:w-10/12 2xl:w-6/12">
+<div id="podcast-card" class={`w-full ${altLayout ? "" : "xl:w-10/12 2xl:w-6/12"}`}>
     <div id="podcast-card-bg" class="w-full h-full"></div>
     <div id="podcast-card-bg-2" class="w-full h-full"></div>
-    <div class={`podcast-content w-full p-6 pb-8 md:pb-10
+    <div class={`podcast-content w-full p-6 2xl:p-8
         flex
         text-cream body-text text-xs md:text-sm!
         ${altLayout ?
             "flex-col md:flex-row justify-center md:justify-between md:items-center text-center md:text-start gap-6 md:gap-0"
         :
-            "flex-col justify-center text-center gap-6"}`}>
+            "flex-col justify-center text-center gap-6 pb-8 md:pb-10 2xl:pb-14"}`}>
         <img
                 src={urlFor(mainContent.podcastImage).width(1200).url()}
                 alt="podcast_thumbnail_image"
