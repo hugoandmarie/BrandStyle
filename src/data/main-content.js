@@ -48,8 +48,7 @@ export const mainContent = {
         },
     ],
     purchaseLink: "",
-    contactText: "Contact us now to determine how we can\n" +
-        "best elevate your communications.",
+    contactText: "Contact us now to determine how we can best elevate your communications.",
     contactLink: "",
     addressText: "228 Park Avenue South, New York, NY 10003",
 };

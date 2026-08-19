@@ -1,19 +1,19 @@
 ---
 const { items = [] } = Astro.props;
 ---
-<!-- TODO: only one collapsible can be open at a time -->
-<div class="w-full">
-    {items.map((item: { title: String; description: String; }) => (
-            <details class="group w-full border-b py-6">
+
+<div class="w-full border-t mt-8 md:mt-10">
+    {items.map((item: { title: string; description: string }) => (
+            <details class="collapsible-item group w-full border-b py-6">
                 <summary class="flex cursor-pointer list-none items-center justify-between">
                     <h3 class="drawer-title-text">
                         {item.title}
                     </h3>
 
                     <span class="ml-4">
-                        <span class="group-open:hidden">+</span>
-                        <span class="hidden group-open:inline">−</span>
-                    </span>
+                    <span class="group-open:hidden">+</span>
+                    <span class="hidden group-open:inline">−</span>
+                </span>
                 </summary>
 
                 <p class="mt-7">
@@ -22,3 +22,19 @@ const { items = [] } = Astro.props;
             </details>
     ))}
 </div>
+
+<script>
+    const collapsibles = document.querySelectorAll(".collapsible-item");
+
+    collapsibles.forEach((item) => {
+        item.addEventListener("toggle", () => {
+            if (!item.open) return;
+
+            collapsibles.forEach((otherItem) => {
+                if (otherItem !== item) {
+                    otherItem.open = false;
+                }
+            });
+        });
+    });
+</script>

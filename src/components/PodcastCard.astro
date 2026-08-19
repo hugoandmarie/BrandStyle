@@ -1,4 +1,12 @@
 ---
+import { sanityClient } from "../lib/sanity";
+import { urlFor } from "../lib/sanityImage";
+const mainContent = await sanityClient.fetch(`
+*[_type == "mainContent"][0] {
+    podcastImage,
+    }
+`);
+
 const {
     date = null,
     length = null,
@@ -9,22 +17,25 @@ const {
 const hasEpisodeData = date || length || description;
 ---
 
-<div id="podcast-card">
+<div id="podcast-card" class="w-full xl:w-10/12 2xl:w-6/12">
     <div id="podcast-card-bg" class="w-full h-full"></div>
     <div id="podcast-card-bg-2" class="w-full h-full"></div>
-    <div class={`podcast-content w-full p-6
+    <div class={`podcast-content w-full p-6 pb-8 md:pb-10
         flex
         text-cream body-text text-xs md:text-sm!
-        ${altLayout ? "flex-row items-center text-start gap-10" : "flex-col justify-center text-center gap-6"}`}>
+        ${altLayout ?
+            "flex-col md:flex-row justify-center md:justify-between md:items-center text-center md:text-start gap-6 md:gap-0"
+        :
+            "flex-col justify-center text-center gap-6"}`}>
         <img
-                src="/images/podcast-image.png"
+                src={urlFor(mainContent.podcastImage).width(1200).url()}
                 alt="podcast_thumbnail_image"
-                class={`w-full h-full rounded-4xl ${altLayout ? "md:w-[30dvw]" : ""}`}
+                class={`w-full h-full rounded-4xl object-contain ${altLayout ? "md:w-4/12" : ""}`}
         />
-        <div class={`flex flex-col gap-6 h-full`}>
+        <div class={`flex flex-col gap-6 h-full ${altLayout ? "md:w-8/12 md:pl-10" : ""}`}>
             {hasEpisodeData ? (
                 <>
-                    <div class={`flex gap-5 ${altLayout ? "justify-start" : "justify-center"}`}>
+                    <div class={`flex gap-5 ${altLayout ? "justify-center md:justify-start" : "justify-center"}`}>
                         <p>{date}</p>
                         <p class="">{length}</p>
                     </div>
@@ -41,16 +52,16 @@ const hasEpisodeData = date || length || description;
                         <p class="mt-2">Zoe Weisberg Coady</p>
                     </div>
 
-                    <div class={`w-full flex items-center ${altLayout ? "flex-row" : "flex-col"}`}>
+                    <div class={`w-full flex items-center md:justify-center md:gap-5 ${altLayout ? "flex-row" : "flex-col md:flex-row"}`}>
                         <div class="flex gap-5">
                             <p>5.0 (8)</p>
                             <p>Self-improvement</p>
                         </div>
-                        <p class={`${altLayout ? "mt-0" : "mt-2"}`}>Updated Weekly</p>
+                        <p class={`${altLayout ? "mt-0" : "mt-2 md:mt-0"}`}>Updated Weekly</p>
                     </div>
                 </>
             )}
-            <div class="flex justify-center gap-8 w-full">
+            <div class={`flex gap-8 w-full ${altLayout ? "justify-center md:justify-start" : "justify-center"}`}>
                 <img src="/images/Spotify.svg" alt="spotify_logo">
                 <img src="/images/Apple.svg" alt="apple_podcast_logo">
             </div>

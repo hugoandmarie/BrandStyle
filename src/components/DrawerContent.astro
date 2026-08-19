@@ -1,8 +1,64 @@
 ---
-import {drawerContent} from "../data/drawer-content";
+import { sanityClient } from "../lib/sanity";
 import Collapsible from "./Collapsible.astro";
 import PodcastCard from "./PodcastCard.astro";
-import {mainContent} from "../data/main-content";
+import {urlFor} from "../lib/sanityImage.ts";
+
+const drawerContent = await sanityClient.fetch(`
+  *[_type == "drawerContent"][0] {
+    aboutMainText,
+    aboutMissionText,
+    aboutServicesText,
+    aboutCollapsibleContent[] {
+      title,
+      description
+    },
+    aboutFounderImage,
+    aboutFounderText,
+    aboutPodcastText,
+    aboutVisibilityAdvText,
+
+    servicesMainText,
+    servicesClientsText,
+    servicesSubText,
+    servicesSectorCollapsibleContent[] {
+      title,
+      description
+    },
+
+    podcastMainText,
+    podcastCards[] {
+      date,
+      length,
+      description
+    },
+    podcastSubText,
+
+    toolkitMainText,
+    toolkitSubtext1,
+    toolkitSubtext2,
+    toolkitSubtext3,
+    toolkitImages[] {
+    image,
+    text
+    },
+    contactMainText,
+    contactAddress {
+      street,
+      cityStateZip
+    },
+    contactEmail1,
+    contactEmail2
+  }
+`);
+
+
+const mainContent = await sanityClient.fetch(`
+*[_type == "mainContent"][0] {
+    spotifyLink,
+    appleLink,
+}
+`);
 ---
 <!-- Darken overlay  -->
 <div
@@ -14,7 +70,7 @@ import {mainContent} from "../data/main-content";
         id="drawer"
         class="
                 fixed bottom-0 left-0
-                z-20 xl:z-40
+                z-40
                 w-dvw h-[92dvh]
                 translate-y-full overflow-y-auto
                 xl:top-0 xl:right-auto xl:bottom-auto
@@ -38,17 +94,19 @@ import {mainContent} from "../data/main-content";
                 <h3 class="drawer-title-text">Our Mission</h3>
                 <p class="mt-7">{drawerContent.aboutMissionText}</p>
             </section>
-            <section class="w-full">
+            <section class="w-full border-teal">
                 <h3 class="drawer-title-text">Services</h3>
                 <p class="mt-7">{drawerContent.aboutServicesText}</p>
-            </section>
-            <section class="w-full border-t border-teal">
                 <Collapsible items={drawerContent.aboutCollapsibleContent} />
                 <a href="" class="link-text mt-7">Work With Us</a>
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
-                <img src="/images/founder-image.png" alt="founder_portrait_b&w" class="w-full object-cover mt-7"/>
+                <img
+                        src={urlFor(drawerContent.aboutFounderImage).width(1200).url()}
+                        alt="Portrait of Zoe Weisberg Coady"
+                        class="w-full object-cover mt-7"
+                />
                 <p class="mt-7">{drawerContent.aboutFounderText}</p>
                 <button data-drawer="about-detail" class="link-text mt-7 text-start">Learn More</button>
             </section>
@@ -63,7 +121,11 @@ import {mainContent} from "../data/main-content";
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6">
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
-                <img src="/images/founder-image.png" alt="founder_portrait_b&w" class="w-full object-cover mt-7"/>
+                <img
+                        src={urlFor(drawerContent.aboutFounderImage).width(1200).url()}
+                        alt="The Visibility Advantage"
+                        class="w-full object-cover mt-7"
+                />
                 <p class="mt-7">{drawerContent.aboutFounderText}</p>
                 <a href="" class="link-text mt-7">Work With Us</a>
             </section>
@@ -104,11 +166,9 @@ import {mainContent} from "../data/main-content";
                 <h3 class="drawer-title-text">Our Clients</h3>
                 <p class="mt-7">{drawerContent.servicesClientsText}</p>
             </section>
-            <section class="w-full">
+            <section class="w-full border-teal">
                 <h3 class="drawer-title-text">Services</h3>
                 <p class="mt-7">{drawerContent.servicesSubText}</p>
-            </section>
-            <section class="w-full border-t border-teal">
                 <Collapsible items={drawerContent.servicesSectorCollapsibleContent} />
                 <a href="" class="link-text mt-7">Work With Us</a>
             </section>
@@ -240,18 +300,16 @@ import {mainContent} from "../data/main-content";
                 <a href="" class="link-text mt-7">Purchase</a>
             </section>
             <section class="flex flex-col gap-8 md:gap-24">
-                <div class="relative">
-                    <img src={drawerContent.toolkitImage_1} alt="abstract-b&w_image" class="w-full object-cover gradient-image"/>
-                    <p class="text-sm mt-4">{drawerContent.toolkitSubtext_1}</p>
-                </div>
-                <div class="relative">
-                    <img src={drawerContent.toolkitImage_1} alt="abstract-b&w_image" class="w-full object-cover gradient-image"/>
-                    <p class="text-sm mt-4">{drawerContent.toolkitSubtext_2}</p>
-                </div>
-                <div class="relative">
-                    <img src={drawerContent.toolkitImage_1} alt="abstract-b&w_image" class="w-full object-cover gradient-image"/>
-                    <p class="text-sm mt-4">{drawerContent.toolkitSubtext_3}</p>
-                </div>
+                {drawerContent.toolkitImages?.map((toolkit) => (
+                    <div class="relative">
+                        <img
+                                src={urlFor(toolkit.image).width(1200).url()}
+                                alt={toolkit.text}
+                                class="w-full object-cover gradient-image"
+                        />
+                        <p class="text-sm mt-4">{toolkit.text}</p>
+                    </div>
+                ))}
             </section>
             <section class="w-full">
                 <a href="" class="link-text">Purchase</a>
@@ -271,19 +329,18 @@ import {mainContent} from "../data/main-content";
             <section class="w-full">
                 <div>
                     <h3 class="drawer-title-text mb-5">Address</h3>
-                    {drawerContent.contactAddress.map((paragraph) => (
-                            <p>{paragraph}</p>
-                    ))}
+                    <p>{drawerContent.contactAddress.street}</p>
+                    <p>{drawerContent.contactAddress.cityStateZip}</p>
                 </div>
             </section>
             <section class="flex flex-col gap-10 w-full">
                 <div>
                     <h3 class="drawer-title-text">Inquiries</h3>
-                    <a href={`mailto: ${drawerContent.contactEmail_1}`} class="mt-5">{drawerContent.contactEmail_1}</a>
+                    <a href={`mailto: ${drawerContent.contactEmail1}`} class="mt-5">{drawerContent.contactEmail1}</a>
                 </div>
                 <div>
                     <h3 class="drawer-title-text">Careers</h3>
-                    <a href={`mailto: ${drawerContent.contactEmail_2}`} class="mt-5">{drawerContent.contactEmail_2}</a>
+                    <a href={`mailto: ${drawerContent.contactEmail2}`} class="mt-5">{drawerContent.contactEmail2}</a>
                 </div>
             </section>
         </div>

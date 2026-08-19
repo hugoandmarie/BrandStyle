@@ -1,0 +1,57 @@
+---
+import { urlFor } from "../lib/sanityImage";
+
+const {
+    service
+} = Astro.props;
+---
+
+<div class="service-hover-item relative hidden xl:block cursor-pointer">
+    <p class="title-text">{service.text}</p>
+
+    <img
+            src={urlFor(service.image).width(1200).url()}
+            alt={service.text}
+            class="
+            service-hover-image
+            pointer-events-none
+            absolute
+            left-0
+            top-1/2
+            -z-5
+            w-88
+            opacity-0
+            transition-opacity
+            duration-200
+            ease-in
+        "
+    />
+</div>
+
+<script>
+    const items = document.querySelectorAll(".service-hover-item");
+
+    items.forEach((item) => {
+        const image = item.querySelector(".service-hover-image");
+
+        if (!(image instanceof HTMLElement)) return;
+
+        item.addEventListener("mouseenter", () => {
+            image.style.opacity = "1";
+        });
+
+        item.addEventListener("mouseleave", () => {
+            image.style.opacity = "0";
+        });
+
+        item.addEventListener("mousemove", (event) => {
+            const mouseEvent = event;
+            const rect = item.getBoundingClientRect();
+
+            const x = mouseEvent.clientX - rect.left;
+
+            image.style.left = `${x}px`;
+            image.style.transform = "translate(-50%, -50%)";
+        });
+    });
+</script>
