@@ -1,18 +1,19 @@
 import { createClient } from "@sanity/client";
 
+const isPreview =
+    import.meta.env.SANITY_PREVIEW === "true";
+
 export const sanityClient = createClient({
     projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
     dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-
     apiVersion: "2026-08-17",
-
     useCdn: false,
 
-    perspective: import.meta.env.DEV
+    perspective: isPreview
         ? "drafts"
         : "published",
 
-    token: import.meta.env.DEV
+    token: isPreview
         ? import.meta.env.SANITY_API_READ_TOKEN
         : undefined,
 });

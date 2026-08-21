@@ -66,6 +66,7 @@ button {
     letter-spacing: 0.28px;
     display: block;
     width: 100%;
+    text-wrap: nowrap;
 
     /* GT America 14 Underlined */
     font-family: "GT America Mono", monospace;

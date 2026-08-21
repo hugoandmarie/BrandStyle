@@ -1,0 +1,126 @@
+<div
+        id="cookie-consent"
+        class="
+        flex justify-center items-center
+        fixed bottom-0 left-0 z-9999
+        w-full
+        translate-y-full
+        bg-cream text-teal
+        transition-transform duration-500
+    "
+>
+
+    <div class="flex flex-col xl:flex-row xl:justify-between gap-6 p-6 xl:p-8">
+
+        <p class="body-text w-full xl:w-3/4 text-sm!">
+            We use cookies to personalise content and ads, to provide social media features
+            and to analyse our traffic. We also share information about your use of our site with our social media,
+            advertising and analytics partners who may combine it with other information that you’ve provided to them
+            or that they’ve collected from your use of their services.
+        </p>
+
+        <div class="flex justify-start gap-8">
+            <button
+                    type="button"
+                    data-cookie-accept
+                    class="link-text w-fit! text-center text-teal underline underline-offset-6 decoration-1 leading-10"
+            >
+                Allow all
+            </button>
+            <button
+                    type="button"
+                    data-cookie-reject
+                    class="link-text w-fit!"
+            >
+                Deny all
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const consentDrawer =
+        document.querySelector("#cookie-consent");
+
+    const acceptButton =
+        document.querySelector("[data-cookie-accept]");
+
+    const rejectButton =
+        document.querySelector("[data-cookie-reject]");
+
+    const existingConsent =
+        localStorage.getItem("cookieConsent");
+
+    let hasShown = false;
+
+    function showCookieConsent() {
+        // Don't show again once the user has made a choice.
+        if (existingConsent || hasShown) return;
+
+        hasShown = true;
+
+        consentDrawer?.classList.remove("translate-y-full");
+        consentDrawer?.classList.add("translate-y-0");
+    }
+
+    function hideCookieConsent() {
+        consentDrawer?.classList.remove("translate-y-0");
+        consentDrawer?.classList.add("translate-y-full");
+    }
+
+    function acceptCookies() {
+        localStorage.setItem("cookieConsent", "accepted");
+
+        hideCookieConsent();
+
+        enableOptionalCookies();
+    }
+
+    function rejectCookies() {
+        localStorage.setItem("cookieConsent", "rejected");
+
+        hideCookieConsent();
+    }
+
+    function enableOptionalCookies() {
+        // Initialize Google Analytics, Meta Pixel, etc. here.
+    }
+
+    // ---------------------------------------
+    // Show after X seconds
+    // ---------------------------------------
+
+    if (!existingConsent) {
+        setTimeout(() => {
+            showCookieConsent();
+        }, 100);
+    }
+
+    window.addEventListener(
+        "scroll",
+        handleScroll,
+        { passive: true }
+    );
+
+    // ---------------------------------------
+    // Buttons
+    // ---------------------------------------
+
+    acceptButton?.addEventListener(
+        "click",
+        acceptCookies
+    );
+
+    rejectButton?.addEventListener(
+        "click",
+        rejectCookies
+    );
+
+    // ---------------------------------------
+    // Returning visitor
+    // ---------------------------------------
+
+    if (existingConsent === "accepted") {
+        enableOptionalCookies();
+    }
+</script>

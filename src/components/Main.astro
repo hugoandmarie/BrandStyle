@@ -43,11 +43,11 @@ const mainContent = await sanityClient.fetch(`
                     class="fixed top-0 left-1/2 w-20 -translate-x-1/2 xl:left-0 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 z-20"
             />
             <button data-drawer="contact" class="nav-text hidden xl:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</button>
-            <h1 class="pointer-events-none title-text pb-32 xl:pb-0 w-[90dvw] md:w-[70dvw] lg:w-[60dvw] xl:w-[50dvw] 2xl:w-[45dvw] text-xl md:text-3xl">
+            <h1 class="pointer-events-none title-text pb-32 xl:pb-0 w-[90dvw] md:w-[70dvw] lg:w-[60dvw] xl:w-[50dvw] 2xl:w-[45dvw]">
                 {mainContent.heroText}
             </h1>
             <div class="body-text absolute bottom-10 xl:-bottom-8 left-0 w-full text-center flex flex-col justify-center items-center">
-                <p class="w-[90dvw] md:w-[50dvw] lg:w-[45dvw] xl:w-[40dvw] 2xl:w-[30dvw] text-sm">{mainContent.orgDesc}</p>
+                <p class="w-[90dvw] md:w-[50dvw] lg:w-[45dvw] xl:w-[40dvw] 2xl:w-[30dvw]">{mainContent.orgDesc}</p>
                 <a href={mainContent.learnMoreLink} class="link-text mt-7 md:mt-10 xl:mt-14">Learn More</a>
             </div>
         </section>
@@ -59,7 +59,7 @@ const mainContent = await sanityClient.fetch(`
                     <div class="block xl:hidden relative w-full md:w-fit">
                         <img src={urlFor(service.image).width(1200).url()} alt={service.text} class="w-full md:w-[40dvw] object-cover h-48 md:h-42 lg:h-56"/>
                         <div class="absolute inset-0 px-4 md:px-12 flex items-center justify-center">
-                            <p class="title-text md:text-xl! md:tracking-normal!">{service.text}</p>
+                            <p class="title-text md! md:tracking-normal!">{service.text}</p>
                         </div>
                     </div>
                     // DESKTOP
@@ -78,7 +78,7 @@ const mainContent = await sanityClient.fetch(`
         <section class="relative flex flex-col items-center xl:flex-row w-[90dvw] md:w-[60dvw] xl:w-[70dvw] 2xl:w-[60dvw] gap-8 md:gap-12 xl:gap-18">
             <PodcastCard />
             <div class="w-full 2xl:w-[40dvw] flex flex-col gap-8 xl:gap-12 2xl:gap-24">
-                <div class="flex flex-col gap-6 text-sm">
+                <div class="flex flex-col gap-6">
                     <p class="body-text text-center md:text-start">{mainContent.podcastDesc1}</p>
                     <p class="body-text text-center md:text-start">{mainContent.podcastDesc2}</p>
                 </div>
@@ -90,7 +90,7 @@ const mainContent = await sanityClient.fetch(`
         </section>
         <!-- VISIBILITY ADVANTAGE -->
         <section class="relative px-[6dvw] md:px-0 flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18">
-            <h2 class="title-text flex items-center justify-center text-xl md:w-[75dvw]">
+            <h2 class="title-text flex items-center justify-center md:w-[75dvw]">
                 {mainContent.visibilityAdvDesc}
             </h2>
             <div class="flex flex-col xl:flex-row gap-8 2xl:gap-12 w-full md:w-fit">
@@ -102,7 +102,7 @@ const mainContent = await sanityClient.fetch(`
                                     class="w-full object-cover h-[25dvh]"
                             />
 
-                            <p class="body-text text-sm mt-4">
+                            <p class="body-text mt-4">
                                 {adv.text}
                             </p>
                         </div>
@@ -115,7 +115,7 @@ const mainContent = await sanityClient.fetch(`
         </section>
         <!-- Contact section -->
         <section class="relative flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18">
-            <h2 class="title-text flex items-center justify-center text-xl w-[80dvw] md:w-[75dvw] xl:w-[55dvw]">
+            <h2 class="title-text flex items-center justify-center w-[80dvw] md:w-[75dvw] xl:w-[55dvw]">
                 {mainContent.contactText}
             </h2>
             <a href={mainContent.contactLink} class="link-text text-center">Contact Us</a>
