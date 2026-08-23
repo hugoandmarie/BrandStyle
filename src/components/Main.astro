@@ -5,6 +5,7 @@ import DrawerContent from "./DrawerContent.astro";
 import PodcastCard from "./PodcastCard.astro";
 import HoverTextSection from "./HoverTextSection.astro"
 import NewsletterSignup from "./NewsletterSignup.astro";
+import ImageInText from "./ImageInText.astro";
 
 const mainContent = await sanityClient.fetch(`
 *[_type == "mainContent"][0] {
@@ -15,6 +16,7 @@ const mainContent = await sanityClient.fetch(`
     image,
     text
     },
+    founderStatement,
     podcastDesc1,
     podcastDesc2,
     spotifyLink,
@@ -69,9 +71,10 @@ const mainContent = await sanityClient.fetch(`
             <a href={mainContent.learnMoreLink} class="link-text text-center">Learn More</a>
         </section>
         <section class="relative flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18 w-full">
-            <h2 class="title-text w-[90dvw] md:w-[80dvw]">
-                Brandstyle Communications works with dynamic companies and the Founders and Entrepreneurs behind them to drive explicit awareness in the most thoughtful, authentic and culturally relevant ways possible.
-            </h2>
+            <ImageInText
+                    segments={mainContent.founderStatement}
+                    className="w-[90dvw] md:w-[80dvw]"
+            />
             <a href={mainContent.learnMoreLink} class="link-text text-center">Learn More</a>
         </section>
         <!-- PODCAST INFO -->

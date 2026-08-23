@@ -122,6 +122,40 @@ export const mainContent = defineType({
             ],
         }),
 
+        defineField({
+            name: "founderStatement",
+            title: "Founder Statement",
+            type: "array",
+
+            of: [
+                defineArrayMember({
+                    type: "object",
+                    name: "textSegment",
+                    title: "Text",
+
+                    fields: [
+                        defineField({
+                            name: "text",
+                            title: "Text",
+                            type: "string",
+                        }),
+                    ],
+
+                    preview: {
+                        select: {
+                            title: "text",
+                        },
+                    },
+                }),
+
+                defineArrayMember({
+                    type: "image",
+                    name: "inlineImage",
+                    title: "Image",
+                }),
+            ],
+        })
+
         // PODCAST
         defineField({
             name: "podcastImage",

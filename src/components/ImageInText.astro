@@ -1,0 +1,33 @@
+---
+import { urlFor } from "../lib/sanityImage";
+
+const {
+    segments = [],
+    className = ""
+} = Astro.props;
+---
+
+<h2 class={`title-text ${className}`}>
+    {segments.map((segment) => (
+        segment.type === "image" ? (
+                <img
+                        src={
+                            segment.image?.asset
+                                ? urlFor(segment.image).width(500).url()
+                                : segment.src
+                        }
+                        alt={segment.alt || ""}
+                        class="
+                    inline-block
+                    w-[1.5em]
+                    h-[0.9em]
+                    mx-[0.15em]
+                    object-cover
+                    align-middle
+                "
+                />
+        ) : (
+                <span>{segment.text}</span>
+        )
+    ))}
+</h2>
