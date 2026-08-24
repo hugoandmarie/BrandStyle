@@ -7,27 +7,31 @@ const {
 } = Astro.props;
 ---
 
-<h2 class={`title-text ${className}`}>
-    {segments.map((segment) => (
-        segment.type === "image" ? (
-                <img
-                        src={
-                            segment.image?.asset
-                                ? urlFor(segment.image).width(500).url()
-                                : segment.src
-                        }
-                        alt={segment.alt || ""}
-                        class="
-                    inline-block
-                    w-[1.5em]
-                    h-[0.9em]
-                    mx-[0.15em]
-                    object-cover
-                    align-middle
-                "
-                />
-        ) : (
-                <span>{segment.text}</span>
-        )
-    ))}
-</h2>
+<div class={`title-text ${className}`}>
+    {segments.map((segment) => {
+        if (segment._type === "inlineImage") {
+            return (
+                    <img
+                            src={urlFor(segment).width(500).url()}
+                            alt=""
+                            class="
+                                inline-block
+                                w-[0.9em]
+                                h-[1.05em]
+                                object-cover
+                                ml-[0.3em]
+                                mr-[0.35em]
+                                relative
+                                top-[-0.1em]
+                            "
+                    />
+            );
+        }
+
+        if (segment._type === "textSegment") {
+            return <span>{segment.text}</span>;
+        }
+
+        return null;
+    })}
+</div>

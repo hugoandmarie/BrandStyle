@@ -126,6 +126,7 @@ export const mainContent = defineType({
             name: "founderStatement",
             title: "Founder Statement",
             type: "array",
+            group: "services",
 
             of: [
                 defineArrayMember({
@@ -154,7 +155,7 @@ export const mainContent = defineType({
                     title: "Image",
                 }),
             ],
-        })
+        }),
 
         // PODCAST
         defineField({
