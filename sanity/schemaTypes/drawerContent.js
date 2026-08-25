@@ -28,7 +28,7 @@ export const drawerContent = defineType({
         },
         {
             name: "toolkit",
-            title: "Toolkit",
+            title: "The Visibility Advantage",
         },
         {
             name: "contact",
@@ -41,6 +41,15 @@ export const drawerContent = defineType({
         // =====================================================
         // ABOUT
         // =====================================================
+
+        defineField({
+            name: "aboutTitle",
+            title: "Drawer Title 1",
+            type: "string",
+            group: "about",
+            description:
+                "Title of drawer.",
+        }),
 
         defineField({
             name: "aboutMainText",
@@ -171,6 +180,15 @@ export const drawerContent = defineType({
         // =====================================================
         // SERVICES
         // =====================================================
+
+        defineField({
+            name: "servicesTitle",
+            title: "Drawer Title 2",
+            type: "string",
+            group: "services",
+            description:
+                "Title of drawer.",
+        }),
 
         defineField({
             name: "servicesMainText",
@@ -340,6 +358,15 @@ export const drawerContent = defineType({
         // =====================================================
 
         defineField({
+            name: "podcastTitle",
+            title: "Drawer Title 3",
+            type: "string",
+            group: "podcast",
+            description:
+                "Title of drawer.",
+        }),
+
+        defineField({
             name: "podcastMainText",
             title: "Podcast Introduction",
             type: "array",
@@ -427,8 +454,17 @@ export const drawerContent = defineType({
 
 
         // =====================================================
-        // TOOLKIT
+        // VISIBILITY ADV
         // =====================================================
+
+        defineField({
+            name: "toolkitTitle",
+            title: "Drawer Title 4",
+            type: "string",
+            group: "toolkit",
+            description:
+                "Title of drawer.",
+        }),
 
         defineField({
             name: "toolkitMainText",
@@ -493,6 +529,15 @@ export const drawerContent = defineType({
         // =====================================================
         // CONTACT
         // =====================================================
+
+        defineField({
+            name: "contactTitle",
+            title: "Drawer Title 5",
+            type: "string",
+            group: "contact",
+            description:
+                "Title of drawer.",
+        }),
 
         defineField({
             name: "contactMainText",

@@ -5,7 +5,7 @@ const headerFooterContent = await sanityClient.fetch(`
     *[_type == "headerFooterContent"][0] {
         headerNavItems[] {
             label,
-            drawerTarget,
+            path,
             showOnMobile,
             showOnDesktop
         }
@@ -24,13 +24,13 @@ const headerFooterContent = await sanityClient.fetch(`
                                 !item.showOnMobile && !item.showOnDesktop && "hidden",
                             ]}
                     >
-                        <button
-                                type="button"
-                                data-drawer={item.drawerTarget}
+                        <a
+                                href={item.path}
+                                data-drawer-link
                                 class="nav-text"
                         >
                             {item.label}
-                        </button>
+                        </a>
                     </li>
             ))}
         </ul>

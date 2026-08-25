@@ -54,11 +54,9 @@ export const headerFooterContent = defineType({
                         }),
 
                         defineField({
-                            name: "drawerTarget",
-                            title: "Drawer Target",
+                            name: "path",
+                            title: "Link",
                             type: "string",
-                            readOnly: false,
-                            description: "Internal value used by the website. Do not edit.",
                         }),
 
                         defineField({
@@ -79,7 +77,7 @@ export const headerFooterContent = defineType({
                     preview: {
                         select: {
                             title: "label",
-                            subtitle: "drawerTarget",
+                            subtitle: "path",
                         },
                     },
                 }),
@@ -113,11 +111,9 @@ export const headerFooterContent = defineType({
                         }),
 
                         defineField({
-                            name: "drawerTarget",
-                            title: "Drawer Target",
+                            name: "path",
+                            title: "Link",
                             type: "string",
-                            readOnly: false,
-                            description: "Internal value used by the website. Do not edit.",
                         }),
 
                         defineField({
@@ -161,7 +157,7 @@ export const headerFooterContent = defineType({
                         select: {
                             title: "label",
                             type: "type",
-                            target: "drawerTarget",
+                            target: "path",
                         },
 
                         prepare({title, type, target}) {
@@ -169,7 +165,7 @@ export const headerFooterContent = defineType({
                                 title,
                                 subtitle:
                                     type === "drawer"
-                                        ? `Drawer: ${target || "Not set"}`
+                                        ? `${target || "Path not set"}`
                                         : type === "newsletter"
                                             ? "Newsletter Signup"
                                             : "External Link",

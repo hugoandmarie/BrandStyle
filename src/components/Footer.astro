@@ -6,7 +6,7 @@ const headerFooterContent = await sanityClient.fetch(`
         footerNavItems[] {
             label,
             type,
-            drawerTarget,
+            path,
             url
         },
 
@@ -16,9 +16,7 @@ const headerFooterContent = await sanityClient.fetch(`
         },
 
         addressText,
-        companyName,
-        privacyPolicyLabel,
-        privacyPolicyLink
+        copyrightText
     }
 `);
 
@@ -53,13 +51,13 @@ const currentYear = new Date().getFullYear();
                             {item.label}
                         </a>
                 ) : (
-                        <button
-                                type="button"
-                                data-drawer={item.drawerTarget}
+                        <a
+                                href={item.path}
+                                data-drawer-link
                                 class="body-text"
                         >
                             {item.label}
-                        </button>
+                        </a>
                 )
             ))}
 
@@ -95,13 +93,13 @@ const currentYear = new Date().getFullYear();
                             {item.label}
                         </a>
                 ) : (
-                        <button
-                                type="button"
-                                data-drawer={item.drawerTarget}
+                        <a
+                                href={item.path}
+                                data-drawer-link
                                 class="body-text"
                         >
                             {item.label}
-                        </button>
+                        </a>
                 )
             ))}
         </div>
@@ -139,13 +137,13 @@ const currentYear = new Date().getFullYear();
                             {item.label}
                         </a>
                 ) : (
-                        <button
-                                type="button"
-                                data-drawer={item.drawerTarget}
+                        <a
+                                href={item.path}
+                                data-drawer-link
                                 class="body-text"
                         >
                             {item.label}
-                        </button>
+                        </a>
                 )
             ))}
         </div>

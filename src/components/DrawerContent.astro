@@ -58,7 +58,12 @@ const drawerContent = await sanityClient.fetch(`
       cityStateZip
     },
     contactEmail1,
-    contactEmail2
+    contactEmail2,
+    aboutTitle,
+    servicesTitle,
+    podcastTitle,
+    toolkitTitle,
+    contactTitle,
   }
 `);
 
@@ -92,7 +97,7 @@ const mainContent = await sanityClient.fetch(`
     <!-- ABOUT -->
     <div data-content="about" class="hidden bg-cream text-teal">
         <div class="drawer-top-bar nav-text">
-            <p>About</p>
+            <p>{drawerContent.aboutTitle}</p>
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
@@ -164,7 +169,7 @@ const mainContent = await sanityClient.fetch(`
     <!-- SERVICES -->
     <div data-content="services" class="hidden bg-cream text-teal">
         <div class="drawer-top-bar nav-text">
-            <p>Services</p>
+            <p>{drawerContent.servicesTitle}</p>
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
@@ -205,7 +210,7 @@ const mainContent = await sanityClient.fetch(`
     <!-- PODCAST -->
     <div data-content="podcast" class="hidden bg-cream text-teal">
         <div class="drawer-top-bar nav-text">
-            <p>Podcast</p>
+            <p>{drawerContent.podcastTitle}</p>
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
@@ -236,10 +241,10 @@ const mainContent = await sanityClient.fetch(`
             </section>
         </div>
     </div>
-    <!-- TOOLKIT -->
-    <div data-content="toolkit" class="hidden bg-cream text-teal">
+    <!-- VISIBILITY ADV -->
+    <div data-content="visibility-adv" class="hidden bg-cream text-teal">
         <div class="drawer-top-bar nav-text">
-            <p>Toolkit</p>
+            <p>{drawerContent.toolkitTitle}</p>
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
@@ -268,7 +273,7 @@ const mainContent = await sanityClient.fetch(`
     <!-- CONTACT -->
     <div data-content="contact" class="hidden bg-cream text-teal">
         <div class="drawer-top-bar nav-text">
-            <p>Contact</p>
+            <p>{drawerContent.contactTitle}</p>
             <button data-drawer-close class="nav-text" type="button">Close</button>
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
