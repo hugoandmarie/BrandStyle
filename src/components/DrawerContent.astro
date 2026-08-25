@@ -61,6 +61,7 @@ const drawerContent = await sanityClient.fetch(`
     clientLogos[] {
         image,
         text,
+        url
     },
     servicesLink1 {
         text,
@@ -236,11 +237,17 @@ const mainContent = await sanityClient.fetch(`
                 <h3 class="drawer-title-text">Select Clients</h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 justify-items-center gap-y-10 md:gap-x-18 mt-7 md:mt-12">
                     {drawerContent.clientLogos?.map((client) => (
-                        <img
-                                src={urlFor(client.image).url()}
-                                alt="Client logo"
-                                class="w-1/2 md:w-full h-full object-contain"
-                        />
+                            <a
+                                    href={client.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                            >
+                                <img
+                                        src={urlFor(client.image).width(600).url()}
+                                        alt={client.text || ""}
+                                        class="w-1/2 md:w-full h-full object-contain"
+                                />
+                            </a>
                     ))}
                 </div>
             </section>

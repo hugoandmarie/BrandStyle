@@ -693,7 +693,6 @@ export const drawerContent = defineType({
                             name: "image",
                             title: "Logo",
                             type: "image",
-
                             validation: (Rule) => Rule.required(),
                         }),
 
@@ -701,14 +700,32 @@ export const drawerContent = defineType({
                             name: "text",
                             title: "Client Title",
                             type: "string",
+                            description: "Enter client name.",
+                        }),
+
+                        defineField({
+                            name: "url",
+                            title: "External Link",
+                            type: "string",
                             description:
-                                'Enter client name.',
+                                'Enter a full external URL, e.g. "https://example.com".',
+                            validation: (Rule) =>
+                                Rule.custom((value) => {
+                                    if (!value) return true;
+
+                                    return (
+                                        value.startsWith("https://") ||
+                                        value.startsWith("http://") ||
+                                        'URL must start with "https://" or "http://".'
+                                    );
+                                }),
                         }),
                     ],
 
                     preview: {
                         select: {
                             title: "text",
+                            subtitle: "url",
                             media: "image",
                         },
                     },
