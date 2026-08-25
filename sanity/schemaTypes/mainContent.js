@@ -64,12 +64,12 @@ export const mainContent = defineType({
         }),
 
         defineField({
-            name: "learnMoreLink",
+            name: "learnMoreLink1",
             title: "Learn More Link",
-            type: "url",
+            type: "string",
             group: "hero",
             description:
-                'Destination for the "Learn More" link in the hero section.',
+                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
         }),
 
         // SERVICES
@@ -123,6 +123,15 @@ export const mainContent = defineType({
         }),
 
         defineField({
+            name: "learnMoreLink2",
+            title: "Learn More Link",
+            type: "string",
+            group: "services",
+            description:
+                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+        }),
+
+        defineField({
             name: "founderStatement",
             title: "Founder Statement",
             type: "array",
@@ -155,6 +164,15 @@ export const mainContent = defineType({
                     title: "Image",
                 }),
             ],
+        }),
+
+        defineField({
+            name: "learnMoreLink3",
+            title: "Learn More Link",
+            type: "string",
+            group: "services",
+            description:
+                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
         }),
 
         // PODCAST
@@ -265,12 +283,21 @@ export const mainContent = defineType({
         }),
 
         defineField({
+            name: "learnMoreLink4",
+            title: "Learn More Link",
+            type: "string",
+            group: "visibility",
+            description:
+                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+        }),
+
+        defineField({
             name: "purchaseLink",
             title: "Purchase URL",
             type: "url",
             group: "visibility",
             description:
-                "Destination for the purchase call-to-action.",
+                "Use a relative path for internal links (e.g. \"/about\") or a full URL for external links (e.g. \"https://google.com\").",
         }),
 
         // CONTACT
@@ -288,47 +315,10 @@ export const mainContent = defineType({
         defineField({
             name: "contactLink",
             title: "Contact Link",
-            type: "url",
+            type: "string",
             group: "contact",
             description:
                 "Destination for the contact call-to-action.",
-        }),
-
-        // FOOTER
-        defineField({
-            name: "instagramLink",
-            title: "Instagram Link",
-            type: "url",
-            group: "footer",
-            description:
-                "URL to Instagram",
-        }),
-
-        defineField({
-            name: "facebookLink",
-            title: "Facebook Link",
-            type: "url",
-            group: "footer",
-            description:
-                "URL to Facebook",
-        }),
-
-        defineField({
-            name: "linkedinLink",
-            title: "LinkedIn Link",
-            type: "url",
-            group: "footer",
-            description:
-                "URL to LinkedIn",
-        }),
-
-        defineField({
-            name: "addressText",
-            title: "Office Address",
-            type: "string",
-            group: "footer",
-            description:
-                "Address displayed in the website footer.",
         }),
     ],
 
