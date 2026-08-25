@@ -67,7 +67,7 @@ button {
     font-style: normal;
     font-weight: 600;
 
-    line-height: 1.05;
+    line-height: normal;
 
     text-transform: uppercase;
 }
@@ -88,7 +88,7 @@ button {
     font-style: normal;
     font-weight: 400;
 
-    line-height: 1.25;
+    line-height: normal;
 
     text-transform: uppercase;
 }
@@ -193,7 +193,7 @@ button {
     font-style: normal;
     font-weight: 400;
 
-    line-height: 1.2;
+    line-height: normal;
 }
 
 
