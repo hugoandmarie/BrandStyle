@@ -1,21 +1,38 @@
-<header class="w-dvw h-fit fixed bottom-0 xl:top-0 z-50 xl:z-30 bg-teal border-t border-white/30 xl:border-none p-5 md:px-14">
+---
+import { sanityClient } from "../lib/sanity";
+
+const headerFooterContent = await sanityClient.fetch(`
+    *[_type == "headerFooterContent"][0] {
+        headerNavItems[] {
+            label,
+            drawerTarget,
+            showOnMobile,
+            showOnDesktop
+        }
+    }
+`);
+---
+
+<header class="w-dvw h-fit fixed bottom-0 xl:top-0 xl:bottom-auto z-50 xl:z-30 bg-teal border-t border-white/30 xl:border-none p-5 md:px-14">
     <nav class="text-cream text-xs">
-        <ul class="flex justify-between xl:justify-center xl:gap-14 items-center">
-            <li>
-                <button data-drawer="about" class="nav-text">About</button>
-            </li>
-            <li>
-                <button data-drawer="services" class="nav-text">Services</button>
-            </li>
-            <li>
-                <button data-drawer="podcast" class="nav-text">Podcast</button>
-            </li>
-            <li>
-                <button data-drawer="toolkit" class="nav-text">Toolkit</button>
-            </li>
-            <li class="block xl:hidden">
-                <button data-drawer="contact" class="nav-text">Contact</button>
-            </li>
+        <ul class="flex justify-between xl:justify-center gap-4 xl:gap-14 items-center">
+            {headerFooterContent?.headerNavItems?.map((item) => (
+                    <li
+                            class:list={[
+                                !item.showOnMobile && item.showOnDesktop && "hidden xl:block",
+                                item.showOnMobile && !item.showOnDesktop && "block xl:hidden",
+                                !item.showOnMobile && !item.showOnDesktop && "hidden",
+                            ]}
+                    >
+                        <button
+                                type="button"
+                                data-drawer={item.drawerTarget}
+                                class="nav-text"
+                        >
+                            {item.label}
+                        </button>
+                    </li>
+            ))}
         </ul>
     </nav>
 </header>
