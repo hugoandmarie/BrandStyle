@@ -5,23 +5,24 @@
     --color-cream: #EBE9E2;
 }
 
-:root {
-
-}
-
 @font-face {
     font-family: GT America;
     src: url('/fonts/GT-America-Standard-Regular.woff2');
 }
 
 @font-face {
-    font-family: GT America Mono;
-    src: url('/fonts/GT-America-Mono-Regular.woff2');
+    font-family: GT America Medium;
+    src: url('/fonts/GT-America-Standard-Medium.woff2');
 }
 
 @font-face {
-    font-family: GT America Medium;
-    src: url('/fonts/GT-America-Standard-Medium.woff2');
+    font-family: GT America Mono Light;
+    src: url('/fonts/GT-America-Mono-Light.woff');
+}
+
+@font-face {
+    font-family: GT America Mono;
+    src: url('/fonts/GT-America-Mono-Regular.woff2');
 }
 
 @font-face {
@@ -33,114 +34,198 @@ button {
     cursor: pointer;
 }
 
+
+/* =====================================================
+   TYPOGRAPHY
+   ===================================================== */
+
 .responsive-single-line {
-    font-size: clamp(0.65rem, 3dvw, 0.875rem);
+    font-size: clamp(0.65rem, 0.4rem + 0.5vw, 0.95rem);
     white-space: nowrap;
 }
 
+
+/* Main display/title text */
 .title-text {
     text-align: center;
-    font-size: 20px;
-    letter-spacing: 2px;
-    /* GT America 48 */
+
+    /*
+    ~20px mobile
+    ~36px around 1024px
+    ~45px around 1440px
+    maxes around 58px on large screens
+    */
+    font-size: clamp(20px, 1rem + 1.25vw, 58px);
+
+    letter-spacing: clamp(
+            2px,
+            0.12em,
+            5.8px
+    );
+
     font-family: "GT America", Arial, sans-serif;
     font-style: normal;
     font-weight: 600;
-    line-height: normal;
+
+    line-height: 1.05;
+
     text-transform: uppercase;
 }
 
+
+/* General monospace body */
 .body-text {
-    font-size: 14px;
-    letter-spacing: 0.28px;
-    /* GT America Mono 18 */
-    font-family: "GT America Mono", monospace;
+    /*
+    ~14px mobile
+    ~16px desktop
+    ~18px large desktop
+    */
+    font-size: clamp(11px, 0.75rem + 0.15vw, 18px);
+
+    letter-spacing: 0.02em;
+
+    font-family: "GT America Mono Light", monospace;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+
+    line-height: 1.25;
+
     text-transform: uppercase;
 }
 
+
+/* Underlined links */
 .link-text {
-    font-size: 14px;
-    letter-spacing: 0.28px;
+    font-size: clamp(11px, 0.75rem + 0.15vw, 18px);
+
+    letter-spacing: 0.02em;
+
     display: block;
     width: 100%;
-    text-wrap: nowrap;
 
-    /* GT America 14 Underlined */
+    white-space: nowrap;
+
     font-family: "GT America Mono", monospace;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+
+    line-height: 1.15;
+
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: 25%; /* 3.5px */
-    text-underline-position: from-font;
+    text-underline-offset: 0.25em;
+
     text-transform: uppercase;
 }
 
-.nav-text {
-    font-size: 12px;
-    letter-spacing: 0.24px;
 
-    /* GT America Mono Regular 12 */
+/* Header / navigation */
+.header-footer-text {
+    /*
+    ~12px mobile
+    ~14px desktop
+    ~16px large desktop
+    */
+    font-size: clamp(10px, 0.65rem + 0.15vw, 16px);
+
+    letter-spacing: 0.02em;
+
     font-family: "GT America Mono", monospace;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+
+    line-height: 1;
+
     text-transform: uppercase;
+
+    white-space: nowrap;
 }
 
+
+/* Newsletter signup */
 .signup-text {
-    /* GT America 24 */
+    /*
+    24px mobile
+    scales into low/mid 30s on large displays
+    */
+    font-size: clamp(22px, 1.15rem + 0.75vw, 34px);
+
     font-family: "GT America", Arial, sans-serif;
-    font-size: 24px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; /* 100% */
+
+    line-height: 1;
+
     text-transform: uppercase;
 }
 
-#drawer > div {
-    /*height: 100%;*/
-    min-height: 100dvh;
-}
 
+/* Drawer headings */
 .drawer-title-text {
-    font-size: 16px;
-    letter-spacing: 0.32px;
+    /*
+    16px → 18px → 22px
+    */
+    font-size: clamp(16px, 0.85rem + 0.3vw, 22px);
 
-    /* GT America 16 Medium */
+    letter-spacing: 0.02em;
+
     font-family: "GT America Medium", Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
+
+    line-height: 1.15;
+
     text-transform: uppercase;
 }
 
-.drawer-body-text {
-    font-size: 16px;
-    letter-spacing: 0.32px;
 
-    /* GT America 16 */
+/* Drawer paragraphs */
+.drawer-body-text {
+    /*
+    16px → 18px → 22px
+    */
+    font-size: clamp(16px, 0.85rem + 0.3vw, 22px);
+
+    letter-spacing: 0.02em;
+
     font-family: "GT America", Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+
+    line-height: 1.2;
+}
+
+
+/* =====================================================
+   DRAWER
+   ===================================================== */
+
+#drawer > div {
+    min-height: 100dvh;
 }
 
 .drawer-top-bar {
     display: flex;
     justify-content: space-between;
     width: 100%;
+
     position: sticky;
     top: 0;
-    padding: 1rem;
+
+    padding: clamp(
+            1rem,
+            0.5rem + 1vw,
+            2.75rem
+    );
+
     background: var(--color-cream);
 }
+
+
+/* =====================================================
+   PODCAST
+   ===================================================== */
 
 #podcast-card {
     position: relative;
@@ -150,79 +235,36 @@ button {
 #podcast-card-bg {
     position: absolute;
     z-index: 0;
+
     border-radius: 38px;
     border: 1px solid #CCC;
-    background: url("/images/podcast-image.png") lightgray 50% / cover no-repeat;
+
+    background:
+            url("/images/podcast-image.png")
+            lightgray
+            50% / cover
+            no-repeat;
+
     backdrop-filter: blur(2px);
 }
 
 #podcast-card-bg-2 {
     position: absolute;
     z-index: -1;
+
     border-radius: 37px;
     border: 1px solid #646464;
+
     background: rgba(47, 30, 52, 0.80);
+
     backdrop-filter: blur(30px);
 }
 
 .podcast-content {
     background: rgba(47, 30, 52, 0.80);
+
     backdrop-filter: blur(30px);
+
     border-radius: 37px;
     border: 1px solid #646464;
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-    .title-text {
-        font-size: 36px;
-        letter-spacing: 3.6px;
-    }
-
-    .body-text {
-        font-size: 18px;
-        letter-spacing: 0.36px;
-    }
-
-    .link-text {
-        font-size: 18px;
-        letter-spacing: 0.36px;
-    }
-
-    .nav-text {
-        font-size: 14px;
-        letter-spacing: 0.28px;
-    }
-
-    .drawer-title-text {
-        font-size: 18px;
-        letter-spacing: 0.36px;
-    }
-
-    .drawer-body-text {
-        font-size: 18px;
-        letter-spacing: 0.36px;
-    }
-}
-
-/* Small desktop */
-@media (min-width: 1280px) {
-    .title-text {
-        font-size: 36px;
-        letter-spacing: 3.6px;
-    }
-    .drawer-top-bar {
-        padding: 1.5rem 2rem;
-    }
-}
-
-/* Desktop */
-@media (min-width: 1536px) {
-    .title-text {
-        font-size: 48px;
-        letter-spacing: 4.8px;
-    }
-    .drawer-top-bar {
-        padding: 2.25rem 2.75rem;
-    }
 }
