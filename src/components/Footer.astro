@@ -15,6 +15,7 @@ const headerFooterContent = await sanityClient.fetch(`
             url
         },
 
+        newsletterSignup,
         addressText,
         copyrightText
     }
@@ -33,33 +34,22 @@ const currentYear = new Date().getFullYear();
         <!-- Desktop -->
         <div class="hidden xl:flex justify-center gap-12">
             {footerNavItems.map((item) => (
-                item.type === "newsletter" ? (
-                        <button
-                                type="button"
-                                data-newsletter-open
-                                class="body-text"
-                        >
-                            {item.label}
-                        </button>
-                ) : item.type === "external" ? (
-                        <a
-                                href={item.url || "#"}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                ) : (
-                        <a
-                                href={item.path}
-                                data-drawer-link
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                )
+                    <a
+                            href={item.path}
+                            data-drawer-link
+                            class="body-text"
+                    >
+                        {item.label}
+                    </a>
             ))}
+
+            <button
+                    type="button"
+                    data-newsletter-open
+                    class="body-text"
+            >
+                {headerFooterContent.newsletterSignup}
+            </button>
 
             {socialLinks.map((item) => (
                     <a
@@ -77,34 +67,24 @@ const currentYear = new Date().getFullYear();
         <!-- Tablet -->
         <div class="hidden md:flex xl:hidden justify-center gap-12">
             {footerNavItems.map((item) => (
-                item.type === "newsletter" ? (
-                        <button
-                                type="button"
-                                data-newsletter-open
-                                class="body-text"
-                        >
-                            {item.label}
-                        </button>
-                ) : item.type === "external" ? (
-                        <a
-                                href={item.url || "#"}
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                ) : (
-                        <a
-                                href={item.path}
-                                data-drawer-link
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                )
+                    <a
+                            href={item.path}
+                            data-drawer-link
+                            class="body-text"
+                    >
+                        {item.label}
+                    </a>
             ))}
         </div>
 
         <div class="hidden md:flex xl:hidden justify-center gap-12">
+            <button
+                    type="button"
+                    data-newsletter-open
+                    class="body-text"
+            >
+                {headerFooterContent.newsletterSignup}
+            </button>
             {socialLinks.map((item) => (
                     <a
                             href={item.url || "#"}
@@ -121,30 +101,30 @@ const currentYear = new Date().getFullYear();
         <!-- Mobile -->
         <div class="md:hidden grid grid-cols-2 gap-x-12 gap-y-8">
             {footerNavItems.map((item) => (
-                item.type === "newsletter" ? (
-                        <button
-                                type="button"
-                                data-newsletter-open
-                                class="body-text"
-                        >
-                            {item.label}
-                        </button>
-                ) : item.type === "external" ? (
-                        <a
-                                href={item.url || "#"}
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                ) : (
-                        <a
-                                href={item.path}
-                                data-drawer-link
-                                class="body-text"
-                        >
-                            {item.label}
-                        </a>
-                )
+                    <a
+                            href={item.path}
+                            data-drawer-link
+                            class="body-text"
+                    >
+                        {item.label}
+                    </a>
+            ))}
+            <button
+                    type="button"
+                    data-newsletter-open
+                    class="body-text"
+            >
+                {headerFooterContent.newsletterSignup}
+            </button>x
+            {socialLinks.map((item) => (
+                    <a
+                            href={item.url || "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="body-text"
+                    >
+                        {item.label}
+                    </a>
             ))}
         </div>
 
@@ -152,19 +132,19 @@ const currentYear = new Date().getFullYear();
 
 
     <!-- Mobile social links -->
-    <ul class="flex md:hidden body-text w-full justify-evenly">
-        {socialLinks.map((item) => (
-                <li>
-                    <a
-                            href={item.url || "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                    >
-                        {item.label}
-                    </a>
-                </li>
-        ))}
-    </ul>
+    <!--<ul class="flex md:hidden body-text w-full justify-evenly">-->
+    <!--    {socialLinks.map((item) => (-->
+    <!--            <li>-->
+    <!--                <a-->
+    <!--                        href={item.url || "#"}-->
+    <!--                        target="_blank"-->
+    <!--                        rel="noopener noreferrer"-->
+    <!--                >-->
+    <!--                    {item.label}-->
+    <!--                </a>-->
+    <!--            </li>-->
+    <!--    ))}-->
+    <!--</ul>-->
 
 
     <!-- Footer details -->

@@ -116,41 +116,6 @@ export const headerFooterContent = defineType({
                             type: "string",
                         }),
 
-                        defineField({
-                            name: "type",
-                            title: "Link Type",
-                            type: "string",
-                            options: {
-                                list: [
-                                    {
-                                        title: "Drawer",
-                                        value: "drawer",
-                                    },
-                                    {
-                                        title: "Newsletter Signup",
-                                        value: "newsletter",
-                                    },
-                                    {
-                                        title: "External Link",
-                                        value: "external",
-                                    },
-                                ],
-                                layout: "radio",
-                            },
-                            initialValue: "drawer",
-                            validation: (Rule) => Rule.required(),
-                        }),
-
-                        defineField({
-                            name: "url",
-                            title: "URL",
-                            type: "url",
-                            description:
-                                "Only required if Link Type is External Link.",
-
-                            hidden: ({parent}) =>
-                                parent?.type !== "external",
-                        }),
                     ],
 
                     preview: {
@@ -174,6 +139,13 @@ export const headerFooterContent = defineType({
                     },
                 }),
             ],
+        }),
+
+        defineField({
+            name: "newsletterSignup",
+            title: "Newsletter Signup text",
+            type: "string",
+            group: "footer",
         }),
 
         // =====================================================
