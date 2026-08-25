@@ -31,7 +31,7 @@ export const drawerContent = defineType({
             title: "Podcast",
         },
         {
-            name: "toolkit",
+            name: "visibility-adv",
             title: "The Visibility Advantage",
         },
         {
@@ -823,6 +823,52 @@ export const drawerContent = defineType({
         }),
 
         defineField({
+            name: "podcastLink1",
+            title: "Podcast Drawer Link 1",
+            type: "object",
+            group: "podcast",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
+            name: "podcastSubTitle",
+            title: "Podcast Supporting Text Title",
+            type: "text",
+            group: "podcast",
+            description:
+                "Additional copy displayed beneath the podcast episodes.",
+        }),
+
+        defineField({
             name: "podcastSubText",
             title: "Podcast Supporting Text",
             type: "text",
@@ -830,6 +876,43 @@ export const drawerContent = defineType({
             group: "podcast",
             description:
                 "Additional copy displayed beneath the podcast episodes.",
+        }),
+
+        defineField({
+            name: "podcastLink2",
+            title: "Podcast Drawer Link 2",
+            type: "object",
+            group: "podcast",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
 
@@ -841,7 +924,7 @@ export const drawerContent = defineType({
             name: "toolkitTitle",
             title: "Drawer Title 4",
             type: "string",
-            group: "toolkit",
+            group: "visibility-adv",
             description:
                 "Title of drawer.",
         }),
@@ -851,25 +934,62 @@ export const drawerContent = defineType({
             title: "Main Introduction",
             type: "text",
             rows: 6,
-            group: "toolkit",
+            group: "visibility-adv",
             description:
                 "Main introductory text for The Visibility Advantage.",
         }),
 
         defineField({
+            name: "visibilityAdvLink1",
+            title: "Visibility Advantage Drawer Link 1",
+            type: "object",
+            group: "visibility-adv",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
             name: "toolkitImages",
-            title: "Toolkit Cards",
+            title: "Visibility Advantage Cards",
             type: "array",
-            group: "toolkit",
+            group: "visibility-adv",
             description:
-                "Add, remove, or reorder the toolkits displayed on the website.",
+                "Add, remove, or reorder the images displayed on the website.",
 
             validation: (Rule) => Rule.min(1),
 
             of: [
                 defineArrayMember({
                     name: "toolkitItem",
-                    title: "Toolkit",
+                    title: "Visibility Advantage Cards",
                     type: "object",
 
                     fields: [
@@ -881,13 +1001,13 @@ export const drawerContent = defineType({
                                 hotspot: true,
                             },
                             description:
-                                "Image displayed with this toolkit.",
+                                "Displayed image.",
                             validation: (Rule) => Rule.required(),
                         }),
 
                         defineField({
                             name: "text",
-                            title: "Toolkit Description",
+                            title: "Description",
                             type: "string",
                             description:
                                 'Description displayed under the image.',
@@ -901,6 +1021,43 @@ export const drawerContent = defineType({
                             media: "image",
                         },
                     },
+                }),
+            ],
+        }),
+
+        defineField({
+            name: "visibilityAdvLink2",
+            title: "Visibility Advantage Drawer Link 2",
+            type: "object",
+            group: "visibility-adv",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
                 }),
             ],
         }),

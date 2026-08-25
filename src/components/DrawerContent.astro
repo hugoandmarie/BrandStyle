@@ -82,6 +82,15 @@ const drawerContent = await sanityClient.fetch(`
       length,
       description
     },
+    podcastLink1 {
+        text,
+        url
+    },
+    podcastLink2 {
+        text,
+        url
+    },
+    podcastSubTitle,
     podcastSubText,
 
     toolkitMainText,
@@ -89,9 +98,18 @@ const drawerContent = await sanityClient.fetch(`
     toolkitSubtext2,
     toolkitSubtext3,
     toolkitImages[] {
-    image,
-    text
+        image,
+        text
     },
+    visibilityAdvLink1 {
+        text,
+        url
+    },
+    visibilityAdvLink2 {
+        text,
+        url
+    },
+    
     contactMainText,
     contactAddress {
       street,
@@ -278,12 +296,12 @@ const mainContent = await sanityClient.fetch(`
                                 altLayout={true}
                         />
                 ))}
-                <a href="" class="link-text mt-7 text-start md:text-center">View All</a>
+                <a href={drawerContent.podcastLink1?.url} data-drawer-link class="link-text mt-7 text-start md:text-center">{drawerContent.podcastLink1?.text}</a>
             </section>
             <section>
-                <h3 class="drawer-title-text">BrandStyle Communications</h3>
+                <h3 class="drawer-title-text">{drawerContent.podcastSubTitle}</h3>
                 <p class="mt-7">{drawerContent.podcastSubText}</p>
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.podcastLink2?.url} data-drawer-link class="link-text mt-7">{drawerContent.podcastLink2?.text}</a>
             </section>
         </div>
     </div>
@@ -297,7 +315,7 @@ const mainContent = await sanityClient.fetch(`
             <section>
                 <h3 class="drawer-title-text">The Visibility Advantage</h3>
                 <p class="mt-7">{drawerContent.toolkitMainText}</p>
-                <a href="" class="link-text mt-7">Purchase</a>
+                <a href={drawerContent.i?.url} data-drawer-link class="link-text mt-7">{drawerContent.visibilityAdvLink1?.text}</a>
             </section>
             <section class="flex flex-col gap-8 md:gap-24">
                 {drawerContent.toolkitImages?.map((toolkit) => (
@@ -312,7 +330,7 @@ const mainContent = await sanityClient.fetch(`
                 ))}
             </section>
             <section class="w-full">
-                <a href="" class="link-text">Purchase</a>
+                <a href={drawerContent.visibilityAdvLink2?.url} data-drawer-link class="link-text mt-7">{drawerContent.visibilityAdvLink2?.text}</a>
             </section>
         </div>
     </div>
