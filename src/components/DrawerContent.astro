@@ -351,7 +351,7 @@ const mainContent = await sanityClient.fetch(`
                     <p>{drawerContent.contactAddress.cityStateZip}</p>
                 </div>
             </section>
-            <section class="flex flex-col gap-10 w-full">
+            <section class="flex flex-col md:flex-row gap-10 md:gap-40 w-full">
                 <div>
                     <h3 class="drawer-title-text">Inquiries</h3>
                     <a href={`mailto: ${drawerContent.contactEmail1}`} class="mt-5">{drawerContent.contactEmail1}</a>

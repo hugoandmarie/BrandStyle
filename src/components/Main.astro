@@ -54,11 +54,13 @@ const mainContent = await sanityClient.fetch(`
         <!-- Hero section -->
         <section class="relative flex justify-center items-center min-h-dvh z-20">
             <!-- Logo -->
-            <img
-                    src="/images/bsc logomark_white.svg"
-                    alt="brandstyle_logo"
-                    class="fixed top-0 left-1/2 w-20 -translate-x-1/2 xl:left-0 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 z-20"
-            />
+            <a href="/">
+                <img
+                        src="/images/bsc logomark_white.svg"
+                        alt="brandstyle_logo"
+                        class="fixed top-0 left-1/2 w-20 -translate-x-1/2 xl:left-0 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 z-20"
+                />
+            </a>
             <a href="/contact" data-drawer-link class="header-footer-text hidden xl:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</a>
             <h1 class="pointer-events-none title-text pb-32 xl:pb-0 w-[90dvw] md:w-[70dvw] lg:w-[60dvw] xl:w-[50dvw] 2xl:w-[45dvw]">
                 {mainContent.heroText}
