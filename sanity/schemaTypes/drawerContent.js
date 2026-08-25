@@ -19,6 +19,10 @@ export const drawerContent = defineType({
             default: true,
         },
         {
+            name: "about-detail",
+            title: "About Detail",
+        },
+        {
             name: "services",
             title: "Services",
         },
@@ -59,6 +63,43 @@ export const drawerContent = defineType({
             group: "about",
             description:
                 "Main introductory text displayed when the About drawer opens.",
+        }),
+
+        defineField({
+            name: "aboutLink1",
+            title: "About Drawer Link 1",
+            type: "object",
+            group: "about",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
         defineField({
@@ -123,6 +164,43 @@ export const drawerContent = defineType({
         }),
 
         defineField({
+            name: "aboutLink2",
+            title: "About Drawer Link 2",
+            type: "object",
+            group: "about",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
             name: "aboutFounderImage",
             title: "Founder Image",
             type: "image",
@@ -145,12 +223,113 @@ export const drawerContent = defineType({
         }),
 
         defineField({
+            name: "aboutLink3",
+            title: "About Drawer Link 3",
+            type: "object",
+            group: "about",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        // =====================================================
+        // ABOUT (DETAIL)
+        // =====================================================
+
+        defineField({
+            name: "aboutDetailFounderImage",
+            title: "Founder Image",
+            type: "image",
+            group: "about-detail",
+            description:
+                "Image shown in the founder section of the About DETAIL drawer.",
+            options: {
+                hotspot: true,
+            },
+        }),
+
+
+        defineField({
+            name: "aboutDetailFounderText",
+            title: "Founder Biography",
+            type: "text",
+            rows: 8,
+            group: "about-detail",
+            description:
+                "Biography shown in the founder section of the About DETAIL drawer.",
+        }),
+
+        defineField({
+            name: "aboutDetailLink1",
+            title: "About Detail Drawer Link 1",
+            type: "object",
+            group: "about-detail",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
             name: "aboutPodcastText",
             title: "Podcast Text",
             type: "array",
-            group: "about",
+            group: "about-detail",
             description:
-                "Paragraphs used for the podcast section within the About detail view.",
+                "Paragraphs used for the podcast section within the About DETAIL view.",
 
             of: [
                 defineArrayMember({
@@ -164,9 +343,9 @@ export const drawerContent = defineType({
             name: "aboutVisibilityAdvText",
             title: "Visibility Advantage Text",
             type: "array",
-            group: "about",
+            group: "about-detail",
             description:
-                "Paragraphs describing The Visibility Advantage inside the About detail view.",
+                "Paragraphs describing The Visibility Advantage inside the About DETAIL view.",
 
             of: [
                 defineArrayMember({
@@ -176,6 +355,79 @@ export const drawerContent = defineType({
             ],
         }),
 
+        defineField({
+            name: "aboutDetailLink2",
+            title: "About Detail Drawer Link 2",
+            type: "object",
+            group: "about-detail",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
+            name: "aboutDetailLink3",
+            title: "About Detail Drawer Link 3",
+            type: "object",
+            group: "about-detail",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
 
         // =====================================================
         // SERVICES
@@ -198,6 +450,43 @@ export const drawerContent = defineType({
             group: "services",
             description:
                 "Main introductory copy displayed when the Services drawer opens.",
+        }),
+
+        defineField({
+            name: "servicesLink1",
+            title: "Services Drawer Link 1",
+            type: "object",
+            group: "services",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
         defineField({
@@ -262,6 +551,43 @@ export const drawerContent = defineType({
         }),
 
         defineField({
+            name: "servicesLink2",
+            title: "Services Drawer Link 2",
+            type: "object",
+            group: "services",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
+        }),
+
+        defineField({
             name: "sectorsSubText",
             title: "Sectors Subtext",
             type: "text",
@@ -308,6 +634,43 @@ export const drawerContent = defineType({
                             subtitle: "description",
                         },
                     },
+                }),
+            ],
+        }),
+
+        defineField({
+            name: "servicesLink3",
+            title: "Services Drawer Link 3",
+            type: "object",
+            group: "services",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
                 }),
             ],
         }),

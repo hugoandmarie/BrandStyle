@@ -16,8 +16,35 @@ const drawerContent = await sanityClient.fetch(`
     },
     aboutFounderImage,
     aboutFounderText,
+    aboutLink1 {
+        text,
+        url
+    },
+    aboutLink2 {
+        text,
+        url
+    },
+    aboutLink3 {
+        text,
+        url
+    },
+    
+    aboutDetailFounderImage,
+    aboutDetailFounderText,
     aboutPodcastText,
     aboutVisibilityAdvText,
+    aboutDetailLink1 {
+        text,
+        url
+    },
+    aboutDetailLink2 {
+        text,
+        url
+    },
+    aboutDetailLink3 {
+        text,
+        url
+    },
 
     servicesMainText,
     servicesClientsText,
@@ -34,6 +61,18 @@ const drawerContent = await sanityClient.fetch(`
     clientLogos[] {
         image,
         text,
+    },
+    servicesLink1 {
+        text,
+        url
+    },
+    servicesLink2 {
+        text,
+        url
+    },
+    servicesLink3 {
+        text,
+        url
     },
 
     podcastMainText,
@@ -103,7 +142,7 @@ const mainContent = await sanityClient.fetch(`
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
             <section>
                 <p>{drawerContent.aboutMainText}</p>
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.aboutLink1?.url} data-drawer-link class="link-text mt-7">{drawerContent.aboutLink1?.text}</a>
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Mission</h3>
@@ -113,7 +152,7 @@ const mainContent = await sanityClient.fetch(`
                 <h3 class="drawer-title-text">Services</h3>
                 <p class="mt-7">{drawerContent.aboutServicesText}</p>
                 <Collapsible items={drawerContent.aboutCollapsibleContent} />
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.aboutLink2?.url} data-drawer-link class="link-text mt-7">{drawerContent.aboutLink2?.text}</a>
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
@@ -123,7 +162,7 @@ const mainContent = await sanityClient.fetch(`
                         class="w-full object-cover mt-7"
                 />
                 <p class="mt-7">{drawerContent.aboutFounderText}</p>
-                <button data-drawer="about-detail" class="link-text mt-7 text-start">Learn More</button>
+                <a href={drawerContent.aboutLink3?.url} data-drawer-link class="link-text mt-7 text-start">{drawerContent.aboutLink3?.text}</a>
             </section>
         </div>
     </div>
@@ -142,7 +181,7 @@ const mainContent = await sanityClient.fetch(`
                         class="w-full object-cover mt-7"
                 />
                 <p class="mt-7">{drawerContent.aboutFounderText}</p>
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.aboutDetailLink1?.url} data-drawer-link class="link-text mt-7 text-start">{drawerContent.aboutDetailLink1?.text}</a>
             </section>
             <section class="w-full">
                 <PodcastCard altLayout={true} />
@@ -160,8 +199,8 @@ const mainContent = await sanityClient.fetch(`
                         <p class="mt-7">{paragraph}</p>
                 ))}
                 <div class="flex gap-10 mt-7">
-                    <a href="" class="link-text w-fit!">Learn More</a>
-                    <a href="" class="link-text w-fit!">Purchase</a>
+                    <a href={drawerContent.aboutDetailLink2?.url} data-drawer-link class="link-text w-fit!">{drawerContent.aboutDetailLink2?.text}</a>
+                    <a href={drawerContent.aboutDetailLink3?.url} data-drawer-link class="link-text w-fit!">{drawerContent.aboutDetailLink3?.text}</a>
                 </div>
             </section>
         </div>
@@ -175,7 +214,7 @@ const mainContent = await sanityClient.fetch(`
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
             <section>
                 <p>{drawerContent.servicesMainText}</p>
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.servicesLink1?.url} data-drawer-link class="link-text mt-7">{drawerContent.servicesLink1?.text}</a>
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Clients</h3>
@@ -185,13 +224,13 @@ const mainContent = await sanityClient.fetch(`
                 <h3 class="drawer-title-text">Services</h3>
                 <p class="mt-7">{drawerContent.servicesSubText}</p>
                 <Collapsible items={drawerContent.servicesCollapsibleContent} />
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.servicesLink2?.url} data-drawer-link class="link-text mt-7">{drawerContent.servicesLink2?.text}</a>
             </section>
             <section class="w-full border-teal">
                 <h3 class="drawer-title-text">Sectors</h3>
                 <p class="mt-7">{drawerContent.sectorsSubText}</p>
                 <Collapsible items={drawerContent.servicesSectorCollapsibleContent} />
-                <a href="" class="link-text mt-7">Work With Us</a>
+                <a href={drawerContent.servicesLink3?.url} data-drawer-link class="link-text mt-7">{drawerContent.servicesLink3?.text}</a>
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">Select Clients</h3>

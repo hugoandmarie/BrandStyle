@@ -121,20 +121,7 @@ export const headerFooterContent = defineType({
                     preview: {
                         select: {
                             title: "label",
-                            type: "type",
-                            target: "path",
-                        },
-
-                        prepare({title, type, target}) {
-                            return {
-                                title,
-                                subtitle:
-                                    type === "drawer"
-                                        ? `${target || "Path not set"}`
-                                        : type === "newsletter"
-                                            ? "Newsletter Signup"
-                                            : "External Link",
-                            };
+                            subtitle: "path",
                         },
                     },
                 }),

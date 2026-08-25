@@ -11,10 +11,22 @@ const mainContent = await sanityClient.fetch(`
 *[_type == "mainContent"][0] {
     heroText,
     orgDesc,
-    learnMoreLink1,
-    learnMoreLink2,
-    learnMoreLink3,
-    learnMoreLink4,
+    learnMoreLink1 {
+        text,
+        url
+    },
+    learnMoreLink2 {
+        text,
+        url
+    },
+    learnMoreLink3 {
+        text,
+        url
+    },
+    learnMoreLink4 {
+        text,
+        url
+    },
     servicesImages[] {
     image,
     text
@@ -53,7 +65,7 @@ const mainContent = await sanityClient.fetch(`
             </h1>
             <div class="body-text absolute bottom-10 xl:-bottom-8 left-0 w-full text-center flex flex-col justify-center items-center">
                 <p class="w-[90dvw] md:w-[50dvw] lg:w-[45dvw] xl:w-[40dvw] 2xl:w-[30dvw]">{mainContent.orgDesc}</p>
-                <a href={mainContent.learnMoreLink1} data-drawer-link class="link-text mt-7 md:mt-10 xl:mt-14">Learn More</a>
+                <a href={mainContent.learnMoreLink1?.url} data-drawer-link class="link-text mt-7 md:mt-10 xl:mt-14">{mainContent.learnMoreLink1?.text}</a>
             </div>
         </section>
         <section class="relative px-[10dvw] md:px-[8dvw] xl:px-0 flex flex-col gap-8 md:gap-12 xl:gap-18 ">
@@ -71,14 +83,14 @@ const mainContent = await sanityClient.fetch(`
                     <HoverTextSection service={service} />
                 ))}
             </div>
-            <a href={mainContent.learnMoreLink2} data-drawer-link class="link-text text-center">Learn More</a>
+            <a href={mainContent.learnMoreLink2?.url} data-drawer-link class="link-text text-center">{mainContent.learnMoreLink2?.text}</a>
         </section>
         <section class="relative flex flex-col justify-center items-center gap-8 md:gap-12 xl:gap-18 w-full">
             <ImageInText
                     segments={mainContent.founderStatement}
                     className="w-[80dvw] lg:w-[60dvw]"
             />
-            <a href={mainContent.learnMoreLink3} data-drawer-link class="link-text text-center">Learn More</a>
+            <a href={mainContent.learnMoreLink3?.url} data-drawer-link class="link-text text-center">{mainContent.learnMoreLink3?.text}</a>
         </section>
         <!-- PODCAST INFO -->
         <section class="relative flex flex-col items-center xl:flex-row w-[90dvw] md:w-[60dvw] xl:w-[70dvw] 2xl:w-[60dvw] gap-8 md:gap-12 xl:gap-18">
@@ -115,7 +127,7 @@ const mainContent = await sanityClient.fetch(`
                 ))}
             </div>
             <div class="flex justify-center gap-10 xl:gap-12">
-                <a href={mainContent.learnMoreLink4} data-drawer-link class="link-text w-fit!">Learn More</a>
+                <a href={mainContent.learnMoreLink4?.url} data-drawer-link class="link-text w-fit!">{mainContent.learnMoreLink4?.text}</a>
                 <a href={mainContent.purchaseLink} class="link-text w-fit!">Purchase</a>
             </div>
         </section>
