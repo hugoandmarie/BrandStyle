@@ -179,18 +179,11 @@ const currentYear = new Date().getFullYear();
         )}
 
         <p class="mt-8 md:mt-2 w-full md:w-[70dvw]">
-            Copyright &copy; {currentYear}{" "}
-            {headerFooterContent?.companyName || "Brandstyle Communications, LLC."}
-            {" "}All Rights Reserved.
-
-            {headerFooterContent?.privacyPolicyLink && (
-                    <>
-                        {" "}
-                        <a href={headerFooterContent.privacyPolicyLink}>
-                            {headerFooterContent.privacyPolicyLabel || "Privacy Policy"}
-                        </a>
-                    </>
-            )}
+            {
+                headerFooterContent?.companyName
+                    ? headerFooterContent.companyName
+                    : `Copyright © ${currentYear} Brandstyle Communications, LLC. All Rights Reserved.`
+            }
         </p>
 
     </div>

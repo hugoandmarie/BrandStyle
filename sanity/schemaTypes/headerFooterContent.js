@@ -240,13 +240,13 @@ export const headerFooterContent = defineType({
         }),
 
         defineField({
-            name: "companyName",
-            title: "Company Name",
+            name: "copyrightText",
+            title: "Copyright Text",
             type: "string",
             group: "footer",
             description:
-                "Company name used in the copyright notice.",
-            initialValue: "Brandstyle Communications, LLC.",
+                "Copyright notice.",
+            initialValue: "Copyright © 2026 Brandstyle Communications, LLC. All Rights Reserved.",
         }),
 
         defineField({
