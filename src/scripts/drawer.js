@@ -13,6 +13,11 @@ const drawerRoutes = {
     "/about-detail": "about-detail",
 };
 
+
+// =====================================================
+// OPEN DRAWER
+// =====================================================
+
 function openDrawer(target) {
     if (!drawer || !overlay) return;
 
@@ -27,7 +32,7 @@ function openDrawer(target) {
         item.classList.add("hidden");
     });
 
-    // Show requested content
+    // Show selected drawer content
     content.classList.remove("hidden");
 
     // Open drawer
@@ -41,7 +46,7 @@ function openDrawer(target) {
         "xl:translate-x-0"
     );
 
-    // Overlay
+    // Show overlay
     overlay.classList.remove(
         "opacity-0",
         "pointer-events-none"
@@ -52,6 +57,7 @@ function openDrawer(target) {
     document.body.classList.add("overflow-hidden");
 }
 
+
 function openDrawerFromPath(path) {
     const target = drawerRoutes[path];
 
@@ -61,6 +67,11 @@ function openDrawerFromPath(path) {
 
     return true;
 }
+
+
+// =====================================================
+// CLOSE DRAWER
+// =====================================================
 
 function closeDrawer(updateUrl = true) {
     if (!drawer || !overlay) return;
@@ -86,32 +97,46 @@ function closeDrawer(updateUrl = true) {
 
     if (updateUrl) {
         history.pushState({}, "", "/");
+
+        window.dispatchEvent(
+            new Event("drawer-route-change")
+        );
     }
 }
 
 
-// --------------------------------------------------
-// Navigation links
-// --------------------------------------------------
+// =====================================================
+// NAVIGATION LINKS
+// =====================================================
 
 links.forEach((link) => {
     link.addEventListener("click", (event) => {
-        event.preventDefault();
-
         if (!(link instanceof HTMLAnchorElement)) return;
 
         const url = new URL(link.href);
 
-        if (!openDrawerFromPath(url.pathname)) return;
+        // Only intercept links that correspond
+        // to an existing drawer
+        if (!drawerRoutes[url.pathname]) return;
 
+        event.preventDefault();
+
+        openDrawerFromPath(url.pathname);
+
+        // Update browser URL
         history.pushState({}, "", url.pathname);
+
+        // Tell header/footer that route changed
+        window.dispatchEvent(
+            new Event("drawer-route-change")
+        );
     });
 });
 
 
-// --------------------------------------------------
-// Close buttons
-// --------------------------------------------------
+// =====================================================
+// CLOSE BUTTONS
+// =====================================================
 
 closes.forEach((button) => {
     button.addEventListener("click", () => {
@@ -124,23 +149,27 @@ overlay?.addEventListener("click", () => {
 });
 
 
-// --------------------------------------------------
-// Browser back / forward
-// --------------------------------------------------
+// =====================================================
+// BROWSER BACK / FORWARD
+// =====================================================
 
 window.addEventListener("popstate", () => {
-    const target = drawerRoutes[window.location.pathname];
+    const path = window.location.pathname;
 
-    if (target) {
-        openDrawer(target);
+    if (drawerRoutes[path]) {
+        openDrawerFromPath(path);
     } else {
         closeDrawer(false);
     }
+
+    window.dispatchEvent(
+        new Event("drawer-route-change")
+    );
 });
 
 
-// --------------------------------------------------
-// Direct URL load
-// --------------------------------------------------
+// =====================================================
+// DIRECT URL LOAD
+// =====================================================
 
 openDrawerFromPath(window.location.pathname);

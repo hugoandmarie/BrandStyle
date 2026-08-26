@@ -4,7 +4,7 @@ import DrawerContent from "./DrawerContent.astro";
 
 <div id="container" class="min-h-dvh">
     <main class="flex flex-col gap-28 md:gap-52 text-cream">
-        <section class="relative min-h-dvh z-20">
+        <section class="relative flex justify-center items-center min-h-dvh z-20">
             <!-- Logo -->
             <a href="/">
                 <img
@@ -13,8 +13,8 @@ import DrawerContent from "./DrawerContent.astro";
                         class="fixed top-0 left-1/2 w-20 -translate-x-1/2 lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 z-20"
                 />
             </a>
-            <button data-drawer="contact" class="header-footer-text hidden lg:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</button>
-            <h1 class="title-text px-[8dvw] md:px-[20dvw] absolute inset-0 flex items-center justify-center text-xl md:text-3xl">
+            <a href="/contact" data-drawer-link class="header-footer-text hidden xl:block fixed right-0 top-1/2 -translate-y-1/2 body-text pr-4">Contact</a>
+            <h1 class="pointer-events-none title-text px-[8dvw] md:px-[20dvw] absolute inset-0 flex items-center justify-center text-xl md:text-3xl">
                 The page you are trying to reach does not exist.
             </h1>
         </section>

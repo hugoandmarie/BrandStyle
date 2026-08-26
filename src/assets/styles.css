@@ -206,7 +206,7 @@ p {
    ===================================================== */
 
 #drawer > div {
-    min-height: 100dvh;
+    /*min-height: 100dvh;*/
 }
 
 .drawer-top-bar {

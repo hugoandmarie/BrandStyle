@@ -15,7 +15,7 @@ const headerFooterContent = await sanityClient.fetch(`
 
 <header class="w-dvw h-fit fixed bottom-0 xl:top-0 xl:bottom-auto z-50 xl:z-30 bg-teal border-t border-white/30 xl:border-none p-5 md:px-14">
     <nav class="text-cream text-xs overflow-x-auto xl:overflow-visible">
-        <ul class="flex w-full xl:w-auto justify-between xl:justify-center gap-6 xl:gap-14 items-center">
+        <ul class="flex w-full xl:w-auto justify-between xl:justify-center gap-8 xl:gap-14 items-center">
             {headerFooterContent?.headerNavItems?.map((item) => (
                     <li
                             class:list={[
@@ -28,7 +28,8 @@ const headerFooterContent = await sanityClient.fetch(`
                         <a
                                 href={item.path}
                                 data-drawer-link
-                                class="header-footer-text whitespace-nowrap"
+                                data-nav-path={item.path}
+                                class="header-footer-text whitespace-nowrap transition-opacity duration-200"
                         >
                             {item.label}
                         </a>
@@ -37,3 +38,53 @@ const headerFooterContent = await sanityClient.fetch(`
         </ul>
     </nav>
 </header>
+
+<script>
+    function updateActiveNav() {
+        const currentPath = window.location.pathname;
+
+        const navLinks = document.querySelectorAll(
+            "[data-nav-path]"
+        );
+
+        navLinks.forEach((link) => {
+            if (!(link instanceof HTMLAnchorElement)) return;
+
+            const linkPath = link.dataset.navPath;
+
+            // Homepage: everything full opacity
+            if (currentPath === "/") {
+                link.classList.remove("opacity-50");
+                link.classList.add("opacity-100");
+                return;
+            }
+
+            // Active drawer
+            if (linkPath === currentPath) {
+                link.classList.remove("opacity-50");
+                link.classList.add("opacity-100");
+            }
+
+            // Inactive drawer links
+            else {
+                link.classList.remove("opacity-100");
+                link.classList.add("opacity-50");
+            }
+        });
+    }
+
+    // Initial state
+    updateActiveNav();
+
+    // Drawer navigation
+    window.addEventListener(
+        "drawer-route-change",
+        updateActiveNav
+    );
+
+    // Browser back / forward
+    window.addEventListener(
+        "popstate",
+        updateActiveNav
+    );
+</script>
