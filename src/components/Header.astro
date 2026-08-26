@@ -40,37 +40,39 @@ const headerFooterContent = await sanityClient.fetch(`
 </header>
 
 <script>
+    // add nested drawer routes in array to maintain active link status
+    const navRouteGroups = {
+        "/about": ["/about", "/about-detail"],
+        "/services": ["/services"],
+        "/podcast": ["/podcast"],
+        "/visibility-adv": ["/visibility-adv"],
+        "/contact": ["/contact"],
+    };
+
     function updateActiveNav() {
         const currentPath = window.location.pathname;
 
-        const navLinks = document.querySelectorAll(
-            "[data-nav-path]"
-        );
+        document
+            .querySelectorAll("[data-nav-path]")
+            .forEach((link) => {
+                if (!(link instanceof HTMLAnchorElement)) return;
 
-        navLinks.forEach((link) => {
-            if (!(link instanceof HTMLAnchorElement)) return;
+                const linkPath = link.dataset.navPath;
+                const isIndex = currentPath === "/";
 
-            const linkPath = link.dataset.navPath;
+                const isActive =
+                    navRouteGroups[linkPath]?.includes(currentPath) ?? false;
 
-            // Homepage: everything full opacity
-            if (currentPath === "/") {
-                link.classList.remove("opacity-50");
-                link.classList.add("opacity-100");
-                return;
-            }
+                link.classList.toggle(
+                    "opacity-100",
+                    isIndex || isActive
+                );
 
-            // Active drawer
-            if (linkPath === currentPath) {
-                link.classList.remove("opacity-50");
-                link.classList.add("opacity-100");
-            }
-
-            // Inactive drawer links
-            else {
-                link.classList.remove("opacity-100");
-                link.classList.add("opacity-50");
-            }
-        });
+                link.classList.toggle(
+                    "opacity-75",
+                    !isIndex && !isActive
+                );
+            });
     }
 
     // Initial state

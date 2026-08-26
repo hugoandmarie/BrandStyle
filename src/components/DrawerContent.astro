@@ -147,7 +147,7 @@ const mainContent = await sanityClient.fetch(`
                 w-dvw h-[92dvh]
                 translate-y-full overflow-y-auto
                 xl:top-0 xl:right-auto xl:bottom-auto
-                xl:h-dvh xl:w-4xl 2xl:w-5xl
+                xl:h-dvh xl:w-6xl 2xl:w-7xl
                 xl:-translate-x-full xl:translate-y-0
                 transition-transform duration-500
                 bg-cream text-teal
@@ -159,7 +159,7 @@ const mainContent = await sanityClient.fetch(`
             <p>{drawerContent.aboutTitle}</p>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
+        <div class="drawer-body-container drawer-body-text">
             <section>
                 <p>{drawerContent.aboutMainText}</p>
                 <a href={drawerContent.aboutLink1?.url} data-drawer-link class="link-text mt-7">{drawerContent.aboutLink1?.text}</a>
@@ -192,7 +192,7 @@ const mainContent = await sanityClient.fetch(`
             <button data-drawer="about" class="header-footer-text">Back to About</button>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
+        <div class="drawer-body-container drawer-body-text">
             <section class="w-full">
                 <h3 class="drawer-title-text">Our Founder<br/>Zoe Weisberg Coady</h3>
                 <img
@@ -227,8 +227,8 @@ const mainContent = await sanityClient.fetch(`
             <p>{drawerContent.servicesTitle}</p>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
-            <section>
+        <div class="drawer-body-container drawer-body-text">
+            <section class="w-full">
                 <p>{drawerContent.servicesMainText}</p>
                 <a href={drawerContent.servicesLink1?.url} data-drawer-link class="link-text mt-7">{drawerContent.servicesLink1?.text}</a>
             </section>
@@ -274,7 +274,7 @@ const mainContent = await sanityClient.fetch(`
             <p>{drawerContent.podcastTitle}</p>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
+        <div class="drawer-body-container drawer-body-text">
             <section>
                 <p class="mt-7">{drawerContent.podcastMainText}</p>
                 <div class="mt-7">
@@ -306,7 +306,7 @@ const mainContent = await sanityClient.fetch(`
             <p>{drawerContent.toolkitTitle}</p>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
+        <div class="drawer-body-container drawer-body-text">
             <section>
                 <h3 class="drawer-title-text">The Visibility Advantage</h3>
                 <p class="mt-7">{drawerContent.toolkitMainText}</p>
@@ -335,7 +335,7 @@ const mainContent = await sanityClient.fetch(`
             <p>{drawerContent.contactTitle}</p>
             <button data-drawer-close class="header-footer-text" type="button">Close</button>
         </div>
-        <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
+        <div class="drawer-body-container drawer-body-text">
             <section class="w-full">
                 <p class="text-start">{drawerContent.contactMainText}</p>
             </section>

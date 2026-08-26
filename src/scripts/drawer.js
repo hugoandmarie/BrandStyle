@@ -35,6 +35,12 @@ function openDrawer(target) {
     // Show selected drawer content
     content.classList.remove("hidden");
 
+    // Reset drawer scroll
+    drawer.scrollTo({
+        top: 0,
+        behavior: "instant",
+    });
+
     // Open drawer
     drawer.classList.remove(
         "translate-y-full",
@@ -46,7 +52,6 @@ function openDrawer(target) {
         "xl:translate-x-0"
     );
 
-    // Show overlay
     overlay.classList.remove(
         "opacity-0",
         "pointer-events-none"

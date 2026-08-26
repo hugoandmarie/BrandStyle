@@ -17,10 +17,10 @@ const {
 const hasEpisodeData = date || length || description;
 ---
 
-<div id="podcast-card" class={`w-full ${altLayout ? "" : "xl:w-10/12 2xl:w-5/12"}`}>
-    <div id="podcast-card-bg" class="w-full h-full"></div>
-    <div id="podcast-card-bg-2" class="w-full h-full"></div>
-    <div class={`podcast-content w-full p-6 2xl:p-8
+<div class={`podcast-card relative isolate w-full ${altLayout ? "" : "xl:w-10/12 2xl:w-5/12"}`}>
+    <div class="podcast-card-bg absolute inset-0 z-0"></div>
+    <!--<div class="podcast-card-bg-2 absolute inset-0 z-0"></div>-->
+    <div class={`podcast-content relative z-10 w-full p-6 2xl:p-8
         flex
         text-cream body-text text-xs md:text-sm!
         ${altLayout ?

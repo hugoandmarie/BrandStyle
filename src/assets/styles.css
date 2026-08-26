@@ -224,22 +224,22 @@ p {
     );
 
     background: var(--color-cream);
+    z-index: 30;
 }
 
+.drawer-body-container {
+    @apply flex flex-col items-center gap-24 mt-12 pb-28 px-6 xl:px-36 2xl:px-44;
+}
 
 /* =====================================================
    PODCAST
    ===================================================== */
 
-#podcast-card {
-    position: relative;
+.podcast-card {
     display: block;
 }
 
-#podcast-card-bg {
-    position: absolute;
-    z-index: 0;
-
+.podcast-card-bg {
     border-radius: 38px;
     border: 1px solid #CCC;
 
@@ -252,10 +252,7 @@ p {
     backdrop-filter: blur(2px);
 }
 
-#podcast-card-bg-2 {
-    position: absolute;
-    z-index: -1;
-
+.podcast-card-bg-2 {
     border-radius: 37px;
     border: 1px solid #646464;
 
