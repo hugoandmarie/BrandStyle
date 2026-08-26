@@ -1,7 +1,3 @@
----
----
-
-<!-- TODO: newsletter integration -->
 <div
         id="newsletter-overlay"
         class="fixed inset-0 z-40 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-500"
@@ -21,6 +17,7 @@
 >
     <div class="drawer-top-bar fixed! header-footer-text">
         <p>Sign Up For Updates</p>
+
         <button
                 type="button"
                 data-newsletter-close
@@ -31,26 +28,66 @@
     </div>
 
     <div class="w-full xl:w-2/3 px-6">
-        <form class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-4 2xl:gap-6">
-            <input
-                    type="email"
-                    placeholder="Email Address"
-                    class="signup-text text-center md:text-start placeholder-teal w-full border-b border-teal bg-transparent h-fit py-1 outline-none"
-            />
 
-            <button
-                    type="submit"
-                    class="signup-text text-center text-teal underline underline-offset-6 decoration-1 leading-10"
-            >
-                Submit
-            </button>
+        <form
+                id="newsletter-form"
+                novalidate
+                class="flex flex-col gap-3"
+        >
+            <div class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-4 2xl:gap-6">
+
+                <div class="w-full h-fit py-1">
+                    <input
+                            id="newsletter-email"
+                            type="email"
+                            placeholder="Email Address"
+                            aria-describedby="newsletter-error"
+                            class="
+                            signup-text
+                            text-center md:text-start
+                            placeholder-teal
+                            border-b border-teal
+                            w-full
+                            bg-transparent
+                            outline-none
+                            transition-colors
+                        "
+                    />
+                    <p
+                            id="newsletter-error"
+                            class="newsletter-error hidden mt-2 xl:mt-3"
+                            aria-live="polite"
+                    ></p>
+                </div>
+
+                <button
+                        type="submit"
+                        class="signup-text text-center text-teal underline underline-offset-6 decoration-1 leading-10"
+                >
+                    Submit
+                </button>
+
+            </div>
+
         </form>
+
+        <p
+                id="newsletter-success"
+                class="newsletter-success signup-text hidden"
+                aria-live="polite"
+        ></p>
+
     </div>
 </div>
 
 <script>
     const drawer = document.querySelector("#newsletter-drawer");
     const overlay = document.querySelector("#newsletter-overlay");
+
+    const form = document.querySelector("#newsletter-form");
+    const emailInput = document.querySelector("#newsletter-email");
+    const errorMessage = document.querySelector("#newsletter-error");
+    const successMessage = document.querySelector("#newsletter-success");
 
     function openNewsletter() {
         drawer?.classList.remove("translate-y-full");
@@ -66,6 +103,7 @@
         document.body.classList.add("overflow-hidden");
     }
 
+
     function closeNewsletter() {
         drawer?.classList.remove("translate-y-0");
         drawer?.classList.add("translate-y-full");
@@ -78,7 +116,102 @@
         );
 
         document.body.classList.remove("overflow-hidden");
+
+        clearError();
     }
+
+
+    function showError(message) {
+        if (!(emailInput instanceof HTMLInputElement)) return;
+
+        emailInput.classList.add("newsletter-input-error");
+        emailInput.setAttribute("aria-invalid", "true");
+
+        if (errorMessage) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove("hidden");
+        }
+    }
+
+
+    function clearError() {
+        if (!(emailInput instanceof HTMLInputElement)) return;
+
+        emailInput.classList.remove("newsletter-input-error");
+        emailInput.removeAttribute("aria-invalid");
+
+        if (errorMessage) {
+            errorMessage.textContent = "";
+            errorMessage.classList.add("hidden");
+        }
+    }
+
+    function showSuccess(message) {
+        if (!successMessage) return;
+
+        successMessage.textContent = message;
+        successMessage.classList.remove("hidden");
+        hideForm();
+    }
+
+    function clearSuccess() {
+        if (!successMessage) return;
+
+        successMessage.textContent = "";
+        successMessage.classList.add("hidden");
+    }
+
+    function showForm() {
+        form?.classList.remove("hidden");
+    }
+
+    function hideForm() {
+        form?.classList.add("hidden");
+    }
+
+    function clearForm() {
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+    }
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!(emailInput instanceof HTMLInputElement)) return;
+
+        const email = emailInput.value.trim();
+
+        // Empty
+        if (!email) {
+            showError("Please enter your email address to sign up.");
+            return;
+        }
+
+        // Invalid email format
+        if (!emailInput.validity.valid) {
+            showError("Please enter a valid email address to sign up.");
+            return;
+        }
+
+        clearError();
+        clearForm();
+        hideForm();
+        showSuccess("Thank you for subscribing.");
+
+        // TODO:
+        // Submit email to newsletter provider here.
+
+
+        console.log("Valid email:", email);
+    });
+
+
+    emailInput?.addEventListener("input", () => {
+        clearError();
+        clearSuccess();
+    });
+
 
     document.addEventListener("click", (event) => {
         const target = event.target;
@@ -86,6 +219,8 @@
         if (!(target instanceof Element)) return;
 
         if (target.closest("[data-newsletter-open]")) {
+            showForm();
+            clearSuccess();
             openNewsletter();
         }
 
@@ -93,6 +228,7 @@
             closeNewsletter();
         }
     });
+
 
     overlay?.addEventListener("click", closeNewsletter);
 </script>

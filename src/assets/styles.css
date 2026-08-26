@@ -3,6 +3,7 @@
 @theme {
     --color-teal: #1F3837;
     --color-cream: #EBE9E2;
+    --color-red: #B80000;
 }
 
 @font-face {
@@ -147,7 +148,11 @@ p {
 }
 
 
-/* Newsletter signup */
+
+/* =====================================================
+   NEWSLETTER
+   ===================================================== */
+
 .signup-text {
     /*
     24px mobile
@@ -161,6 +166,13 @@ p {
 
     line-height: 1;
 
+    text-transform: uppercase;
+}
+
+.newsletter-error {
+    color: var(--color-red);
+    font-family: "GT America Mono", monospace;
+    font-size: clamp(10px, 0.65rem + 0.15vw, 16px);
     text-transform: uppercase;
 }
 
