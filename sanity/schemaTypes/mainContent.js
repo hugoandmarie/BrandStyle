@@ -276,20 +276,10 @@ export const mainContent = defineType({
             name: "podcastDesc1",
             title: "Podcast Intro",
             type: "text",
-            rows: 3,
-            group: "podcast",
-            description:
-                "Short introductory text for the podcast section.",
-        }),
-
-        defineField({
-            name: "podcastDesc2",
-            title: "Podcast Description",
-            type: "text",
             rows: 5,
             group: "podcast",
             description:
-                "Longer supporting description for the podcast.",
+                "Introductory text for the podcast section.",
         }),
 
         defineField({

@@ -204,9 +204,7 @@ const mainContent = await sanityClient.fetch(`
             </section>
             <section class="w-full">
                 <PodcastCard altLayout={true} />
-                {drawerContent.aboutPodcastText.map((paragraph) => (
-                        <p class="mt-7">{paragraph}</p>
-                ))}
+                <p class="mt-7">{drawerContent.aboutPodcastText}</p>
                 <div class="mt-7">
                     <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
                     <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
@@ -214,9 +212,7 @@ const mainContent = await sanityClient.fetch(`
             </section>
             <section class="w-full">
                 <h3 class="drawer-title-text">the visibility advantage</h3>
-                {drawerContent.aboutVisibilityAdvText.map((paragraph) => (
-                        <p class="mt-7">{paragraph}</p>
-                ))}
+                <p class="mt-7">{drawerContent.aboutVisibilityAdvText}</p>
                 <div class="flex gap-10 mt-7">
                     <a href={drawerContent.aboutDetailLink2?.url} data-drawer-link class="link-text w-fit!">{drawerContent.aboutDetailLink2?.text}</a>
                     <a href={drawerContent.aboutDetailLink3?.url} data-drawer-link class="link-text w-fit!">{drawerContent.aboutDetailLink3?.text}</a>
@@ -279,9 +275,7 @@ const mainContent = await sanityClient.fetch(`
         </div>
         <div class="flex flex-col items-center gap-24 drawer-body-text mt-12 pb-28 px-6 xl:px-16 2xl:px-24">
             <section>
-                {drawerContent.podcastMainText.map((paragraph) => (
-                        <p class="mt-7">{paragraph}</p>
-                ))}
+                <p class="mt-7">{drawerContent.podcastMainText}</p>
                 <div class="mt-7">
                     <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
                     <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>

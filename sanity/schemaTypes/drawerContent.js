@@ -326,33 +326,21 @@ export const drawerContent = defineType({
         defineField({
             name: "aboutPodcastText",
             title: "Podcast Text",
-            type: "array",
+            type: "text",
+            rows: 5,
             group: "about-detail",
             description:
-                "Paragraphs used for the podcast section within the About DETAIL view.",
-
-            of: [
-                defineArrayMember({
-                    type: "text",
-                    rows: 4,
-                }),
-            ],
+                "Introductory text for the podcast section.",
         }),
 
         defineField({
             name: "aboutVisibilityAdvText",
             title: "Visibility Advantage Text",
-            type: "array",
+            type: "text",
+            rows: 5,
             group: "about-detail",
             description:
                 "Paragraphs describing The Visibility Advantage inside the About DETAIL view.",
-
-            of: [
-                defineArrayMember({
-                    type: "text",
-                    rows: 4,
-                }),
-            ],
         }),
 
         defineField({
@@ -749,17 +737,10 @@ export const drawerContent = defineType({
         defineField({
             name: "podcastMainText",
             title: "Podcast Introduction",
-            type: "array",
+            type: "text",
             group: "podcast",
             description:
                 "Introductory paragraphs displayed at the top of the Podcast drawer.",
-
-            of: [
-                defineArrayMember({
-                    type: "text",
-                    rows: 4,
-                }),
-            ],
         }),
 
         defineField({
@@ -863,6 +844,7 @@ export const drawerContent = defineType({
             name: "podcastSubTitle",
             title: "Podcast Supporting Text Title",
             type: "text",
+            rows: 1,
             group: "podcast",
             description:
                 "Additional copy displayed beneath the podcast episodes.",
