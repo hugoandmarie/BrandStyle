@@ -18,21 +18,21 @@ const hasEpisodeData = date || length || description;
 ---
 
 <div class={`podcast-card relative isolate w-full ${altLayout ? "" : "xl:w-10/12 2xl:w-5/12"}`}>
-    <div class="podcast-card-bg absolute inset-0 z-0"></div>
+    <div class="podcast-card-bg absolute inset-0 z-0 rounded-[2.5rem]"></div>
     <!--<div class="podcast-card-bg-2 absolute inset-0 z-0"></div>-->
-    <div class={`podcast-content relative z-10 w-full p-6 2xl:p-8
-        flex
+    <div class={`podcast-content relative z-10 w-full flex
+        p-6 md:p-9 2xl:p-9 rounded-[2.5rem]
         text-cream body-text text-xs md:text-sm!
         ${altLayout ?
-            "flex-col md:flex-row justify-center md:justify-between md:items-center text-center md:text-start gap-6 md:gap-0"
+            "md:h-64 lg:h-72 flex-col md:flex-row justify-center md:justify-start md:items-center text-center md:text-start gap-6 md:gap-0 pb-10"
         :
             "flex-col justify-center text-center gap-6 pb-8 md:pb-10 2xl:pb-14"}`}>
         <img
                 src={urlFor(mainContent.podcastImage).width(1200).url()}
                 alt="podcast_thumbnail_image"
-                class={`w-full h-full rounded-4xl object-contain ${altLayout ? "md:w-4/12" : ""}`}
+                class={`w-fit h-full rounded-4xl object-contain ${altLayout ? "" : ""}`}
         />
-        <div class={`flex flex-col gap-6 h-full ${altLayout ? "md:w-8/12 md:pl-10" : ""}`}>
+        <div class={`flex flex-col gap-6 h-full ${altLayout ? "justify-between md:w-8/12 xl:w-7/12 md:pl-10" : ""}`}>
             {hasEpisodeData ? (
                 <>
                     <div class={`flex gap-5 ${altLayout ? "justify-center md:justify-start" : "justify-center"}`}>
@@ -40,7 +40,7 @@ const hasEpisodeData = date || length || description;
                         <p class="">{length}</p>
                     </div>
 
-                    <div class={`w-full flex ${altLayout ? "flex-col gap-6" : "flex-row items-center"}`}>
+                    <div class={`w-full flex ${altLayout ? "flex-col gap-4 md:gap-6 xl:gap-8" : "flex-row items-center"}`}>
                         <p>{description}</p>
                         <p class={`${altLayout ? "mt-0" : "mt-2"} font-normal`}>The Not Perfect Networking Podcast</p>
                     </div>
@@ -61,7 +61,7 @@ const hasEpisodeData = date || length || description;
                     </div>
                 </>
             )}
-            <div class={`flex gap-8 w-full ${altLayout ? "justify-center md:justify-start" : "justify-center"}`}>
+            <div class={`flex gap-6 xl:gap-8 w-full ${altLayout ? "justify-center md:justify-start  md:max-h-8" : "justify-center"}`}>
                 <img src="/images/Spotify.svg" alt="spotify_logo">
                 <img src="/images/Apple.svg" alt="apple_podcast_logo">
             </div>

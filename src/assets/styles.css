@@ -240,9 +240,7 @@ p {
 }
 
 .podcast-card-bg {
-    border-radius: 38px;
     border: 1px solid #CCC;
-
     background:
             url("/images/podcast-image.png")
             lightgray
@@ -253,9 +251,7 @@ p {
 }
 
 .podcast-card-bg-2 {
-    border-radius: 37px;
     border: 1px solid #646464;
-
     background: rgba(47, 30, 52, 0.80);
 
     backdrop-filter: blur(30px);
@@ -266,6 +262,5 @@ p {
 
     backdrop-filter: blur(30px);
 
-    border-radius: 37px;
     border: 1px solid #646464;
 }

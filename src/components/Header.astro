@@ -14,7 +14,7 @@ const headerFooterContent = await sanityClient.fetch(`
 ---
 
 <header class="w-dvw h-fit fixed bottom-0 xl:top-0 xl:bottom-auto z-50 xl:z-30 bg-teal border-t border-white/30 xl:border-none p-5 md:px-14">
-    <nav class="text-cream text-xs overflow-x-auto xl:overflow-visible">
+    <nav class="text-cream text-xs overflow-x-auto xl:overflow-visible scrollbar-none">
         <ul class="flex w-full xl:w-auto justify-between xl:justify-center gap-8 xl:gap-14 items-center">
             {headerFooterContent?.headerNavItems?.map((item) => (
                     <li
