@@ -264,3 +264,14 @@ p {
 
     border: 1px solid #646464;
 }
+
+.podcast-rating-text {
+    font-family: "GT America Mono", monospace;
+    font-style: normal;
+    font-weight: 400;
+
+    line-height: normal;
+    text-transform: uppercase;
+
+    font-size: clamp(9px, 0.6rem + 0.1vw, 15px);
+}

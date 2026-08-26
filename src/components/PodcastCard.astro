@@ -24,7 +24,7 @@ const hasEpisodeData = date || length || description;
         p-6 md:p-9 2xl:p-9 rounded-[2.5rem]
         text-cream body-text text-xs md:text-sm!
         ${altLayout ?
-            "md:h-64 lg:h-72 flex-col md:flex-row justify-center md:justify-start md:items-center text-center md:text-start gap-6 md:gap-0 pb-10"
+            "md:h-72 md:max-h-80 flex-col md:flex-row justify-center md:justify-start md:items-center text-center md:text-start gap-6 md:gap-0 pb-10"
         :
             "flex-col justify-center text-center gap-6 pb-8 md:pb-10 2xl:pb-14"}`}>
         <img
@@ -32,7 +32,7 @@ const hasEpisodeData = date || length || description;
                 alt="podcast_thumbnail_image"
                 class={`w-fit h-full rounded-4xl object-contain ${altLayout ? "" : ""}`}
         />
-        <div class={`flex flex-col gap-6 h-full ${altLayout ? "justify-between md:w-8/12 xl:w-7/12 md:pl-10" : ""}`}>
+        <div class={`flex flex-col gap-6 h-full ${altLayout ? `justify-between md:w-8/12 xl:w-7/12 md:pl-10 ${!hasEpisodeData ? `max-h-10/12` : ``}` : ""}`}>
             {hasEpisodeData ? (
                 <>
                     <div class={`flex gap-5 ${altLayout ? "justify-center md:justify-start" : "justify-center"}`}>
@@ -52,9 +52,15 @@ const hasEpisodeData = date || length || description;
                         <p class="mt-2">Zoe Weisberg Coady</p>
                     </div>
 
-                    <div class={`w-full flex items-center md:justify-center md:gap-5 ${altLayout ? "flex-row" : "flex-col md:flex-row"}`}>
-                        <div class="flex gap-5">
-                            <p>5.0 (8)</p>
+                    <div class={`w-full flex items-center md:gap-5 podcast-rating-text
+                        ${altLayout ? "flex-row" : "flex-col md:flex-row md:justify-center"}`}>
+                        <div class="flex gap-5 items-center">
+                            <p class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                    <path d="M5.27829 0.255209C5.46955 -0.0841132 5.95819 -0.084113 6.14944 0.255209L7.66463 2.94342C7.73598 3.07001 7.85887 3.15929 8.00131 3.18803L11.0262 3.79836C11.408 3.8754 11.559 4.34012 11.2954 4.62687L9.20695 6.8986C9.10861 7.00558 9.06167 7.15005 9.07835 7.2944L9.43263 10.3598C9.47735 10.7467 9.08203 11.034 8.72785 10.8719L5.92195 9.58766C5.78982 9.52718 5.63792 9.52718 5.50579 9.58766L2.69988 10.8719C2.34571 11.034 1.95039 10.7467 1.99511 10.3598L2.34939 7.2944C2.36607 7.15005 2.31913 7.00558 2.22078 6.8986L0.132364 4.62687C-0.131249 4.34012 0.0197484 3.8754 0.401564 3.79836L3.42642 3.18803C3.56886 3.15929 3.69175 3.07001 3.7631 2.94342L5.27829 0.255209Z" fill="#EDEDED"/>
+                                </svg>
+                                5.0 (8)
+                            </p>
                             <p>Self-improvement</p>
                         </div>
                         <p class={`${altLayout ? "mt-0" : "mt-2 md:mt-0"}`}>Updated Weekly</p>
