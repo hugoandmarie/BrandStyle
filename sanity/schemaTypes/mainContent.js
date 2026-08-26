@@ -273,6 +273,51 @@ export const mainContent = defineType({
         }),
 
         defineField({
+            name: "podcastTitle",
+            title: "Podcast Title",
+            type: "string",
+            group: "podcast",
+            description:
+                "Title in podcast card.",
+        }),
+
+        defineField({
+            name: "podcastSubtitle",
+            title: "Podcast Subtitle",
+            type: "string",
+            group: "podcast",
+            description:
+                "Subtitle in podcast card.",
+        }),
+
+        defineField({
+            name: "podcastRating",
+            title: "Podcast Rating",
+            type: "string",
+            group: "podcast",
+            description:
+                "Rating text in podcast card.",
+        }),
+
+        defineField({
+            name: "podcastTag1",
+            title: "Podcast Tag 1",
+            type: "string",
+            group: "podcast",
+            description:
+                "Tag 1 in podcast card.",
+        }),
+
+        defineField({
+            name: "podcastTag2",
+            title: "Podcast Tag 2",
+            type: "string",
+            group: "podcast",
+            description:
+                "Tag 2 in podcast card.",
+        }),
+
+        defineField({
             name: "podcastDesc1",
             title: "Podcast Intro",
             type: "text",
