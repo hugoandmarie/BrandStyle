@@ -135,14 +135,14 @@ const hasEpisodeData = date || length || description;
 
                         <div
                                 class:list={[
-                                    "w-full flex items-center md:gap-5 podcast-rating-text",
+                                    "w-full flex items-center md:gap-5 podcast-rating-text flex-wrap",
                                     altLayout
                                         ? "flex-row"
                                         : "flex-col md:flex-row md:justify-center",
                                 ]}
                         >
                             <div class="flex gap-5 items-center">
-                                <p class="flex items-center gap-2">
+                                <p class="flex items-center gap-2 whitespace-nowrap! text-nowrap!">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="12"
@@ -159,12 +159,12 @@ const hasEpisodeData = date || length || description;
                                     {mainContent.podcastRating}
                                 </p>
 
-                                <p>
+                                <p class="whitespace-nowrap! text-nowrap!">
                                     {mainContent.podcastTag1}
                                 </p>
                             </div>
 
-                            <p class={altLayout ? "mt-0" : "mt-2 md:mt-0"}>
+                            <p class={`whitespace-nowrap! text-nowrap! ${altLayout ? "mt-0" : "mt-2 md:mt-0"}`}>
                                 {mainContent.podcastTag2}
                             </p>
                         </div>
