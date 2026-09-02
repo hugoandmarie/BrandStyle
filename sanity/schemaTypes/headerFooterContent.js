@@ -63,6 +63,8 @@ export const headerFooterContent = defineType({
                             name: "showOnMobile",
                             title: "Show on Mobile",
                             type: "boolean",
+                            description: "For design and development purposes only. Cannot be edited.",
+                            readOnly: true,
                             initialValue: true,
                         }),
 
@@ -70,6 +72,8 @@ export const headerFooterContent = defineType({
                             name: "showOnDesktop",
                             title: "Show on Desktop",
                             type: "boolean",
+                            description: "For design and development purposes only. Cannot be edited.",
+                            readOnly: true,
                             initialValue: true,
                         }),
                     ],
