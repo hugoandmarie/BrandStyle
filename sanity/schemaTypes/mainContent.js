@@ -329,20 +329,80 @@ export const mainContent = defineType({
 
         defineField({
             name: "spotifyLink",
-            title: "Spotify URL",
-            type: "url",
+            title: "Spotify Link",
+            type: "object",
             group: "podcast",
             description:
                 "Link to the podcast on Spotify.",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
         defineField({
             name: "appleLink",
-            title: "Apple Podcasts URL",
-            type: "url",
+            title: "Apple Podcasts Link",
+            type: "object",
             group: "podcast",
             description:
                 "Link to the podcast on Apple Podcasts.",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
         // VISIBILITY ADVANTAGE
@@ -440,11 +500,39 @@ export const mainContent = defineType({
 
         defineField({
             name: "purchaseLink",
-            title: "Purchase URL",
-            type: "url",
+            title: "Purchase Link",
+            type: "object",
             group: "visibility",
-            description:
-                "Use a relative path for internal links (e.g. \"/about\") or a full URL for external links (e.g. \"https://google.com\").",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
 
         // CONTACT
@@ -462,10 +550,38 @@ export const mainContent = defineType({
         defineField({
             name: "contactLink",
             title: "Contact Link",
-            type: "string",
+            type: "object",
             group: "contact",
-            description:
-                "Destination for the contact call-to-action.",
+            fields: [
+                defineField({
+                    name: "text",
+                    title: "Link Text",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                    name: "url",
+                    title: "Link URL",
+                    type: "string",
+                    description:
+                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                    validation: (Rule) =>
+                        Rule.custom((value) => {
+                            if (!value) return true;
+
+                            const isInternal = value.startsWith("/");
+                            const isExternal =
+                                value.startsWith("https://") ||
+                                value.startsWith("http://");
+
+                            return (
+                                isInternal ||
+                                isExternal ||
+                                'Link must start with "/" or "http://"/"https://".'
+                            );
+                        }),
+                }),
+            ],
         }),
     ],
 

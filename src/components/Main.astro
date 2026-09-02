@@ -34,16 +34,28 @@ const mainContent = await sanityClient.fetch(`
     founderStatement,
     podcastDesc1,
     podcastDesc2,
-    spotifyLink,
-    appleLink,
+    spotifyLink {
+    image,
+    text
+    },
+    appleLink {
+    image,
+    text
+    },,
     visibilityAdvDesc,
     visibilityAdvImages[] {
     image,
     text
     },
-    purchaseLink,
+    purchaseLink {
+        text,
+        url
+    },
     contactText,
-    contactLink,
+    contactLink {
+        text,
+        url
+    },
     addressText
     }
 `);
@@ -103,8 +115,8 @@ const mainContent = await sanityClient.fetch(`
                     <p class="body-text text-center md:text-start">{mainContent.podcastDesc2}</p>
                 </div>
                 <div class="text-center md:text-start">
-                    <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
-                    <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+                    <a href={mainContent.spotifyLink.url} class="link-text">{mainContent.spotifyLink.text}</a>
+                    <a href={mainContent.appleLink.url} class="link-text mt-5">{mainContent.appleLink.text}</a>
                 </div>
             </div>
         </section>
@@ -130,7 +142,7 @@ const mainContent = await sanityClient.fetch(`
             </div>
             <div class="flex justify-center gap-10 xl:gap-12">
                 <a href={mainContent.learnMoreLink4?.url} data-drawer-link class="link-text w-fit!">{mainContent.learnMoreLink4?.text}</a>
-                <a href={mainContent.purchaseLink} class="link-text w-fit!">Purchase</a>
+                <a href={mainContent.purchaseLink.url} class="link-text w-fit!">{mainContent.purchaseLink.text}</a>
             </div>
         </section>
         <!-- Contact section -->
@@ -138,7 +150,7 @@ const mainContent = await sanityClient.fetch(`
             <h2 class="title-text flex items-center justify-center w-[80dvw] md:w-[75dvw] xl:w-[55dvw]">
                 {mainContent.contactText}
             </h2>
-            <a href={mainContent.contactLink} data-drawer-link class="link-text text-center">Contact Us</a>
+            <a href={mainContent.contactLink.url} data-drawer-link class="link-text text-center">{mainContent.contactLink.text}</a>
         </section>
         <!-- Drawer Content -->
         <DrawerContent />
