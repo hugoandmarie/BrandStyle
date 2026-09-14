@@ -29,16 +29,122 @@
 
     <div class="w-full xl:w-2/3 px-6">
 
+        <iframe
+                name="substack-signup"
+                class="hidden"
+                title="Newsletter signup"
+        ></iframe>
+
         <form
                 id="newsletter-form"
+                action="https://zoecoady.substack.com/api/v1/free"
+                method="POST"
+                target="substack-signup"
                 novalidate
                 class="flex flex-col gap-3"
         >
+            <input
+                    type="hidden"
+                    name="sessionStarted"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="landingReferrer"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="landingUrl"
+                    value="https://zoecoady.substack.com/subscribe"
+            />
+
+            <input
+                    type="hidden"
+                    name="landingSurface"
+                    value="publisher"
+            />
+
+            <input
+                    type="hidden"
+                    name="landingPublicationId"
+                    value="2112925"
+            />
+
+            <input
+                    type="hidden"
+                    name="referrer"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="first_url"
+                    value="https://zoecoady.substack.com/subscribe"
+            />
+
+            <input
+                    type="hidden"
+                    name="first_referrer"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="current_url"
+                    value="https://zoecoady.substack.com/subscribe"
+            />
+
+            <input
+                    type="hidden"
+                    name="current_referrer"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="first_session_url"
+                    value="https://zoecoady.substack.com/subscribe"
+            />
+
+            <input
+                    type="hidden"
+                    name="first_session_referrer"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="referral_code"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="source"
+                    value="subscribe_page"
+            />
+
+            <input
+                    type="hidden"
+                    name="referring_pub_id"
+                    value=""
+            />
+
+            <input
+                    type="hidden"
+                    name="additional_referring_pub_ids"
+                    value=""
+            />
+
             <div class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-4 2xl:gap-6">
 
                 <div class="relative w-full h-fit py-1">
                     <input
                             id="newsletter-email"
+                            name="email"
                             type="email"
                             placeholder="Email Address"
                             aria-describedby="newsletter-error"
@@ -88,6 +194,20 @@
     const emailInput = document.querySelector("#newsletter-email");
     const errorMessage = document.querySelector("#newsletter-error");
     const successMessage = document.querySelector("#newsletter-success");
+
+    const substackFrame = document.getElementById(
+        "substack-signup-frame"
+    );
+
+    const sessionStartedInput = form?.querySelector(
+        'input[name="sessionStarted"]'
+    );
+
+    if (sessionStartedInput instanceof HTMLInputElement) {
+        sessionStartedInput.value = String(Date.now());
+    }
+
+    let newsletterSubmitting = false;
 
     function openNewsletter() {
         drawer?.classList.remove("translate-y-full");
@@ -176,42 +296,74 @@
     }
 
     form?.addEventListener("submit", (event) => {
-        event.preventDefault();
+        clearError();
+        clearSuccess();
 
         if (!(emailInput instanceof HTMLInputElement)) return;
 
         const email = emailInput.value.trim();
 
-        // Empty
         if (!email) {
+            event.preventDefault();
             showError("Please enter your email address to sign up.");
             return;
         }
 
-        // Invalid email format
         if (!emailInput.validity.valid) {
+            event.preventDefault();
             showError("Please enter a valid email address to sign up.");
             return;
         }
 
+        emailInput.value = email;
+
+        const submitButton = form.querySelector(
+            'button[type="submit"]'
+        );
+
+        if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = true;
+        }
+
+        console.log("Submitting to Substack:", email);
+
+        setTimeout(() => {
+            clearForm();
+            hideForm();
+            showSuccess("Thank you for subscribing!");
+
+            if (submitButton instanceof HTMLButtonElement) {
+                submitButton.disabled = false;
+            }
+        }, 500);
+
+    });
+
+    substackFrame?.addEventListener("load", () => {
+        if (!newsletterSubmitting) return;
+
+        newsletterSubmitting = false;
+
+        console.log("Substack signup completed.");
+
         clearError();
         clearForm();
         hideForm();
-        showSuccess("Thank you for subscribing.");
+        showSuccess("Thank you for subscribing!");
 
-        // TODO:
-        // Submit email to newsletter provider here.
+        const submitButton = form?.querySelector(
+            'button[type="submit"]'
+        );
 
-
-        console.log("Valid email:", email);
+        if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = false;
+        }
     });
-
 
     emailInput?.addEventListener("input", () => {
         clearError();
         clearSuccess();
     });
-
 
     document.addEventListener("click", (event) => {
         const target = event.target;

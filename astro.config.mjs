@@ -4,8 +4,11 @@ import tailwindcss from "@tailwindcss/vite";
 
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
+    adapter: cloudflare(),
+
     vite: {
         plugins: [tailwindcss()],
     },
