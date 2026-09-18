@@ -80,7 +80,8 @@ const drawerContent = await sanityClient.fetch(`
     podcastCards[] {
       date,
       length,
-      description
+      description,
+      url
     },
     podcastLink1 {
         text,
@@ -128,8 +129,11 @@ const drawerContent = await sanityClient.fetch(`
 
 const mainContent = await sanityClient.fetch(`
 *[_type == "mainContent"][0] {
-    spotifyLink,
-    appleLink,
+     textLinks[] {
+        text,
+        url
+    },
+    podcastDesc1
 }
 `);
 ---
@@ -206,9 +210,10 @@ const mainContent = await sanityClient.fetch(`
             <section class="w-full">
                 <PodcastCard altLayout={true} />
                 <p class="mt-7 body-text">{drawerContent.aboutPodcastText}</p>
-                <div class="mt-7">
-                    <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
-                    <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+                <div class="mt-7 flex flex-col md:flex-row justify-start items-start gap-5 md:gap-10">
+                    {mainContent.textLinks.map((link) => (
+                            <a href={link.url} target="_blank" class="link-text w-fit!">{link.text}</a>
+                    ))}
                 </div>
             </section>
             <section class="w-full">
@@ -276,10 +281,11 @@ const mainContent = await sanityClient.fetch(`
         </div>
         <div class="drawer-body-container drawer-body-text">
             <section>
-                <p class="mt-7">{drawerContent.podcastMainText}</p>
-                <div class="mt-7">
-                    <a href={mainContent.spotifyLink} class="link-text">Listen on Spotify</a>
-                    <a href={mainContent.appleLink} class="link-text mt-5">Listen on Apple Music</a>
+                <p class="mt-7">{mainContent.podcastDesc1}</p>
+                <div class="mt-7 flex flex-col md:flex-row gap-5 md:gap-10">
+                    {mainContent.textLinks.map((link) => (
+                            <a href={link.url} target="_blank" class="link-text w-fit!">{link.text}</a>
+                    ))}
                 </div>
             </section>
             <section class="flex flex-col gap-8">
@@ -288,6 +294,7 @@ const mainContent = await sanityClient.fetch(`
                                 date={podcast.date}
                                 length={podcast.length}
                                 description={podcast.description}
+                                url={podcast.url}
                                 altLayout={true}
                         />
                 ))}

@@ -323,15 +323,15 @@ export const drawerContent = defineType({
             ],
         }),
 
-        defineField({
-            name: "aboutPodcastText",
-            title: "Podcast Text",
-            type: "text",
-            rows: 5,
-            group: "about-detail",
-            description:
-                "Introductory text for the podcast section.",
-        }),
+        // defineField({
+        //     name: "aboutPodcastText",
+        //     title: "Podcast Text",
+        //     type: "text",
+        //     rows: 5,
+        //     group: "about-detail",
+        //     description:
+        //         "Introductory text for the podcast section.",
+        // }),
 
         defineField({
             name: "aboutVisibilityAdvText",
@@ -782,6 +782,29 @@ export const drawerContent = defineType({
                             type: "text",
                             rows: 3,
                             validation: (Rule) => Rule.required(),
+                        }),
+
+                        defineField({
+                            name: "url",
+                            title: "Podcast URL",
+                            type: "string",
+                            description:
+                                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                            validation: (Rule) =>
+                                Rule.custom((value) => {
+                                    if (!value) return true;
+
+                                    const isInternal = value.startsWith("/");
+                                    const isExternal =
+                                        value.startsWith("https://") ||
+                                        value.startsWith("http://");
+
+                                    return (
+                                        isInternal ||
+                                        isExternal ||
+                                        'Link must start with "/" or "http://"/"https://".'
+                                    );
+                                }),
                         }),
                     ],
 

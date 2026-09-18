@@ -10,28 +10,51 @@ const mainContent = await sanityClient.fetch(`
     podcastRating,
     podcastTag1,
     podcastTag2,
-}
+    iconLinks[defined(url) && defined(icon)] {
+        icon,
+        url,
+        alt
+    },
+    }
 `);
 
 const {
     date = null,
     length = null,
     description = null,
+    url = null,
     altLayout = false,
 } = Astro.props;
 
 const hasEpisodeData = date || length || description;
+const isEpisodeCard = Boolean(hasEpisodeData && url);
+const iconLinks = mainContent?.iconLinks ?? [];
+const hasIconLinks = iconLinks.length > 0;
 ---
 
 <div
-        class={`podcast-card relative isolate w-full ${
-            altLayout ? "" : "xl:w-10/12 2xl:w-5/12"
-        }`}
+        class:list={[
+            "podcast-card relative isolate block w-full",
+            altLayout ? "" : "xl:w-10/12 2xl:w-5/12",
+        ]}
 >
     <div class="podcast-card-bg absolute inset-0 z-0 rounded-[2.5rem]"></div>
 
+    <!-- Stretched pseudo-link: covers the whole card, sits under the content layer -->
+    {isEpisodeCard && (
+            <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="absolute inset-0 z-10 rounded-[2.5rem]"
+            >
+                <span class="sr-only">{description ?? "Listen to this episode"}</span>
+            </a>
+    )}
+
     <div
-            class={`podcast-content relative z-10 w-full flex
+            class={`podcast-content relative z-20 w-full flex
+            ${isEpisodeCard ? "pointer-events-none" : ""}
             p-6 md:p-9 2xl:p-9
             rounded-[2.5rem]
             text-cream body-text text-xs md:text-sm!
@@ -151,7 +174,7 @@ const hasEpisodeData = date || length || description;
                                             fill="none"
                                     >
                                         <path
-                                                d="M5.27829 0.255209C5.46955 -0.0841132 5.95819 -0.084113 6.14944 0.255209L7.66463 2.94342C7.73598 3.07001 7.85887 3.15929 8.00131 3.18803L11.0262 3.79836C11.408 3.8754 11.559 4.34012 11.2954 4.62687L9.20695 6.8986C9.10861 7.00558 9.06167 7.15005 9.07835 7.2944L9.43263 10.3598C9.47735 10.7467 9.08203 11.034 8.72785 10.8719L5.92195 9.58766C5.78982 9.52718 5.63792 9.52718 5.50579 9.58766L2.69988 10.8719C2.34571 11.034 1.95039 10.7467 1.99511 10.3598L2.34939 7.2944C2.36607 7.15005 2.31913 7.00558 2.22078 6.8986L0.132364 4.62687C-0.131249 4.34012 0.0197484 3.8754 0.401564 3.79836L3.42642 3.18803C3.56886 3.15929 3.69175 3.07001 3.7631 2.94342L5.27829 0.255209Z"
+                                                d="M5.27829 0.255209C5.46955 -0.0841132 5.95819 -0.0841132 6.14944 0.255209L7.66463 2.94342C7.73598 3.07001 7.85887 3.15929 8.00131 3.18803L11.0262 3.79836C11.408 3.8754 11.559 4.34012 11.2954 4.62687L9.20695 6.8986C9.10861 7.00558 9.06167 7.15005 9.07835 7.2944L9.43263 10.3598C9.47735 10.7467 9.08203 11.034 8.72785 10.8719L5.92195 9.58766C5.78982 9.52718 5.63792 9.52718 5.50579 9.58766L2.69988 10.8719C2.34571 11.034 1.95039 10.7467 1.99511 10.3598L2.34939 7.2944C2.36607 7.15005 2.31913 7.00558 2.22078 6.8986L0.132364 4.62687C-0.131249 4.34012 0.0197484 3.8754 0.401564 3.79836L3.42642 3.18803C3.56886 3.15929 3.69175 3.07001 3.7631 2.94342L5.27829 0.255209Z"
                                                 fill="#EDEDED"
                                         />
                                     </svg>
@@ -164,31 +187,44 @@ const hasEpisodeData = date || length || description;
                                 </p>
                             </div>
 
-                            <p class={`whitespace-nowrap! text-nowrap! ${altLayout ? "mt-0" : "mt-2 md:mt-0"}`}>
+                            <p
+                                    class={`whitespace-nowrap! text-nowrap! ${
+                                        altLayout
+                                            ? "mt-0"
+                                            : "mt-2 md:mt-0"
+                                    }`}
+                            >
                                 {mainContent.podcastTag2}
                             </p>
                         </div>
                     </>
             )}
 
-            <div
-                    class:list={[
-                        "flex gap-6 xl:gap-8 w-full",
-                        altLayout
-                            ? "justify-center md:justify-start md:max-h-8"
-                            : "justify-center",
-                    ]}
-            >
-                <img
-                        src="/images/Spotify.svg"
-                        alt="spotify_logo"
-                />
-
-                <img
-                        src="/images/Apple.svg"
-                        alt="apple_podcast_logo"
-                />
-            </div>
+            {hasIconLinks && (
+                    <div
+                            class:list={[
+                                "flex gap-6 xl:gap-8 w-full pointer-events-auto",
+                                altLayout
+                                    ? "justify-center md:justify-start md:max-h-8"
+                                    : "justify-center",
+                            ]}
+                    >
+                        {iconLinks.map((link) => (
+                                <a
+                                        href={link.url}
+                                        target={link.url?.startsWith("http") ? "_blank" : undefined}
+                                        rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                        class="relative z-30"
+                                >
+                                    <img
+                                            src={urlFor(link.icon).width(200).url()}
+                                            alt={link.alt || ""}
+                                            class="h-full w-auto"
+                                    />
+                                </a>
+                        ))}
+                    </div>
+            )}
         </div>
     </div>
 </div>

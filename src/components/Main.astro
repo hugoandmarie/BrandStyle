@@ -33,19 +33,14 @@ const mainContent = await sanityClient.fetch(`
     },
     founderStatement,
     podcastDesc1,
-    podcastDesc2,
-    spotifyLink {
-    image,
-    text
-    },
-    appleLink {
-    image,
-    text
+    textLinks[] {
+        text,
+        url
     },
     visibilityAdvDesc,
     visibilityAdvImages[] {
-    image,
-    text
+        image,
+        text
     },
     purchaseLink {
         text,
@@ -110,13 +105,13 @@ const mainContent = await sanityClient.fetch(`
         <section class="relative flex flex-col items-center xl:flex-row w-[90dvw] md:w-[60dvw] xl:w-[70dvw] 2xl:w-[60dvw] gap-8 md:gap-12 xl:gap-18">
             <PodcastCard />
             <div class="w-full 2xl:w-[40dvw] flex flex-col gap-8 xl:gap-12 2xl:gap-14">
-                <div class="flex flex-col gap-6">
+                <div>
                     <p class="body-text text-center md:text-start">{mainContent.podcastDesc1}</p>
-                    <p class="body-text text-center md:text-start">{mainContent.podcastDesc2}</p>
                 </div>
-                <div class="text-center md:text-start">
-                    <a href={mainContent.spotifyLink.url} class="link-text">{mainContent.spotifyLink.text}</a>
-                    <a href={mainContent.appleLink.url} class="link-text mt-5">{mainContent.appleLink.text}</a>
+                <div class="text-center md:text-start flex flex-col items-center md:items-start gap-5">
+                    {mainContent.textLinks.map((link) => (
+                            <a href={link.url} target="_blank" class="link-text w-fit!">{link.text}</a>
+                    ))}
                 </div>
             </div>
         </section>

@@ -328,79 +328,143 @@ export const mainContent = defineType({
         }),
 
         defineField({
-            name: "spotifyLink",
-            title: "Spotify Link",
-            type: "object",
+            name: "iconLinks",
+            title: "Icon Links",
+            type: "array",
             group: "podcast",
-            description:
-                "Link to the podcast on Spotify.",
-            fields: [
-                defineField({
-                    name: "text",
-                    title: "Link Text",
-                    type: "string",
-                    validation: (Rule) => Rule.required(),
-                }),
-                defineField({
-                    name: "url",
-                    title: "Link URL",
-                    type: "string",
-                    description:
-                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
-                    validation: (Rule) =>
-                        Rule.custom((value) => {
-                            if (!value) return true;
+            of: [
+                defineArrayMember({
+                    name: "iconLink",
+                    title: "Icon Link",
+                    type: "object",
 
-                            const isInternal = value.startsWith("/");
-                            const isExternal =
-                                value.startsWith("https://") ||
-                                value.startsWith("http://");
-
-                            return (
-                                isInternal ||
-                                isExternal ||
-                                'Link must start with "/" or "http://"/"https://".'
-                            );
+                    fields: [
+                        defineField({
+                            name: "icon",
+                            title: "Icon",
+                            type: "image",
+                            options: {
+                                hotspot: true,
+                            },
+                            validation: (Rule) => Rule.required(),
                         }),
+
+                        defineField({
+                            name: "url",
+                            title: "URL",
+                            type: "string",
+                            description:
+                                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                            validation: (Rule) =>
+                                Rule.custom((value) => {
+                                    if (!value) return true;
+
+                                    const isInternal = value.startsWith("/");
+                                    const isExternal =
+                                        value.startsWith("https://") ||
+                                        value.startsWith("http://");
+
+                                    return (
+                                        isInternal ||
+                                        isExternal ||
+                                        'Link must start with "/" or "http://"/"https://".'
+                                    );
+                                }),
+                        }),
+
+                        defineField({
+                            name: "alt",
+                            title: "Alt Text",
+                            type: "string",
+                            description:
+                                "Describe the icon/link for accessibility.",
+                        }),
+                    ],
+
+                    preview: {
+                        select: {
+                            title: "alt",
+                            media: "icon",
+                            url: "url",
+                        },
+
+                        prepare({ title, media, url }) {
+                            return {
+                                title: title || "Icon Link",
+                                subtitle: url || "",
+                                media,
+                            };
+                        },
+                    },
                 }),
             ],
         }),
 
         defineField({
-            name: "appleLink",
-            title: "Apple Podcasts Link",
-            type: "object",
+            name: "textLinks",
+            title: "Text Links",
+            type: "array",
             group: "podcast",
-            description:
-                "Link to the podcast on Apple Podcasts.",
-            fields: [
-                defineField({
-                    name: "text",
-                    title: "Link Text",
-                    type: "string",
-                    validation: (Rule) => Rule.required(),
-                }),
-                defineField({
-                    name: "url",
-                    title: "Link URL",
-                    type: "string",
-                    description:
-                        'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
-                    validation: (Rule) =>
-                        Rule.custom((value) => {
-                            if (!value) return true;
+            of: [
+                defineArrayMember({
+                    name: "textLink",
+                    title: "Text Link",
+                    type: "object",
 
-                            const isInternal = value.startsWith("/");
-                            const isExternal =
-                                value.startsWith("https://") ||
-                                value.startsWith("http://");
-
-                            return (
-                                isInternal ||
-                                isExternal ||
-                                'Link must start with "/" or "http://"/"https://".'
-                            );
+                    fields: [
+                        defineField({
+                            name: "text",
+                            title: "Link Text",
+                            type: "string",
+                            validation: (Rule) => Rule.required(),
                         }),
+
+                        defineField({
+                            name: "url",
+                            title: "URL",
+                            type: "string",
+                            description:
+                                'Use a relative path for internal links (e.g. "/about") or a full URL for external links (e.g. "https://google.com").',
+                            validation: (Rule) =>
+                                Rule.custom((value) => {
+                                    if (!value) return true;
+
+                                    const isInternal = value.startsWith("/");
+                                    const isExternal =
+                                        value.startsWith("https://") ||
+                                        value.startsWith("http://");
+
+                                    return (
+                                        isInternal ||
+                                        isExternal ||
+                                        'Link must start with "/" or "http://"/"https://".'
+                                    );
+                                }),
+                        }),
+
+                        defineField({
+                            name: "alt",
+                            title: "Alt Text",
+                            type: "string",
+                            description:
+                                "Describe the icon/link for accessibility.",
+                        }),
+                    ],
+
+                    preview: {
+                        select: {
+                            title: "alt",
+                            url: "url",
+                        },
+
+                        prepare({ title, media, url }) {
+                            return {
+                                title: title || "Text Link",
+                                subtitle: url || "",
+                                media,
+                            };
+                        },
+                    },
                 }),
             ],
         }),
