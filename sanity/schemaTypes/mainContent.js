@@ -405,6 +405,8 @@ export const mainContent = defineType({
             title: "Text Links",
             type: "array",
             group: "podcast",
+            description:
+                "Links that appear under the podcast description text.",
             of: [
                 defineArrayMember({
                     name: "textLink",
